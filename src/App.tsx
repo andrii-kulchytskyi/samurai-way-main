@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import Header from "./Header";
+import Technologies from './Technologies';
 
 const App = () => {
     return (
@@ -10,25 +12,8 @@ const App = () => {
         </div>
     );
 }
-const Header = () => {
-    return (
-        <>
-            <div>Header</div>
-            <a>1</a>
-            <a>2</a>
-            <a>3</a>
-        </>
-    )
-}
-const Technologies = () => {
-    return (
-        <ul>
-            <li>CSS</li>
-            <li>Redux</li>
-            <li>React</li>
-        </ul>
-    )
-}
+
+
 
 
 export default App;
