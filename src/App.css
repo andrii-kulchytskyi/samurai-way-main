@@ -10,6 +10,9 @@ grid-template-areas: "h h"
     grid-template-columns: 2fr 10fr;
     /*grid-gap: 10px;*/
 }
+.content{
+    background: azure;
+}
 
 
 
