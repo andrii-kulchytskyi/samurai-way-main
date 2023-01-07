@@ -1,7 +1,12 @@
 import React from "react";
 import s from "./Posts.module.css";
 
-const Posts = (props:any) => {
+
+export type PostsType = {
+    message: string,
+    likeCount: number
+}
+const Posts = (props: PostsType) => {
     return (<div className={s.item}>
             <img
                 src="https://cdn3.wpbeginner.com/wp-content/uploads/2020/03/ultimate-small-business-resource-coronavirus.png"/>
