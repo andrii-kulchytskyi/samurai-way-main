@@ -1,20 +1,22 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
-import Profile from "./components/Profile/Profile";
 import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Router} from "react-router-dom";
+import Profile from "./components/Profile/Profile";
+import {RootStateType} from "./state/state";
 
 
-const App = () => {
+const App = (props: RootStateType) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
-                <Route path={'/dialogs'} render={() => <Dialogs/>}/>
-                <Route path={'/profile'} render={() => <Profile/>}/>
+                <Route path={'/dialogs'} render={() => <Dialogs dialogs={props.dialogPage.dialogs}
+                                                                messages={props.dialogPage.messages}/>}/>
+                <Route path={'/profile'} render={() => <Profile posts={props.profilePage.posts}/>}/>
                 <div className={"component"}>
                 </div>
             </div>

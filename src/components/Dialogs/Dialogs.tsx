@@ -1,14 +1,15 @@
 import React from 'react';
 import s from "./Dialogs.module.css";
-import {Message, messages} from "./Messages/Message";
-import {DialogItem, dialogs} from "./DialogItem/DialogItem";
+import {DialogItem} from "./DialogItem/DialogItem";
+import {Message} from "./Messages/Message";
+import {DialogPageType, state} from "../../state/state";
 
 
-const Dialogs = () => {
+const Dialogs = (props: DialogPageType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {dialogs.map(el => {
+                {props.dialogs.map(el => {
                     return (
                         <ul>
                             <li><DialogItem name={el.name} id={el.id}/></li>
@@ -17,7 +18,7 @@ const Dialogs = () => {
                 })}
 
                 <div className={s.messages}>
-                    {messages.map(el => {
+                    {state.dialogPage.messages.map(el => {
                         return (
                             <>
                                 <Message message={el.message}/>

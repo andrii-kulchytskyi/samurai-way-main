@@ -16,12 +16,5 @@ export const DialogItem = (props: DialogItemsType) => {
     )
 }
 
-export const dialogs = [
-    {id: 1, name: "Andrii"},
-    {id: 2, name: "Dmitry"},
-    {id: 3, name: "Sveta"},
-    {id: 4, name: "Yulia"},
-    {id: 5, name: "Bogdan"},
-    {id: 6, name: "Valera"},
-]
+
 
