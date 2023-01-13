@@ -1,12 +1,12 @@
 import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Posts, {PostsType} from "./Posts/Posts";
-import {PostType, ProfilePageType, state} from "../../../redux/state/state";
+import {ProfilePageType} from "../../../redux/state/state";
 
 
 const MyPosts = (props: ProfilePageType) => {
 
-    //
+
     const addPost = () => {
         props.addPostCallback(props.newMessageTextPost)
         props.changeNewTextCallback("")

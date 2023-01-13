@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from "../../App";
-import {RootStateType} from "./state";
+import {store} from "./state";
 
 
-export let renderTree = (state: RootStateType) => {
+export let renderTree = () => {
+    debugger
     ReactDOM.render(
-        <App dialogPage={state.dialogPage} profilePage={state.profilePage} sidebar={state.sidebar}
-             />,
+        <App
+            store={store}/>,
         document.getElementById('root')
     );
 }
