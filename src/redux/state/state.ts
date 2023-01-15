@@ -5,9 +5,9 @@ export const store: StoreType = {
                 {id: 1, message: 'Hello hor u', likeCount: 2},
                 {id: 2, message: 'It is my first post,', likeCount: 2},
             ],
-            addPostCallback: () => store.addPost,
+            addPostCallback: () => store.dispatch,
             newMessageTextPost: "",
-            changeNewTextCallback: () => store.changeNewText
+            changeNewTextCallback: () => store.dispatch
         },
         dialogPage: {
             dialogs: [
@@ -27,15 +27,6 @@ export const store: StoreType = {
 
         sidebar: {},
     },
-    changeNewText(newText: string) {
-        this._state.profilePage.newMessageTextPost = newText
-        this.onChange()
-    },
-    addPost(postMessage: string) {
-        let newPost: PostType = {id: new Date().getTime(), message: postMessage, likeCount: 0}
-        this._state.profilePage.posts.push(newPost)
-        this.onChange()
-    },
     onChange() {
         console.log("type of b1tCH")
     },
@@ -44,16 +35,52 @@ export const store: StoreType = {
     },
     getState() {
         return this._state
+    },
+    // changeNewText(newText: string) {
+    //     this._state.profilePage.newMessageTextPost = newText
+    //     this.onChange()
+    // },
+    // addPost(postMessage: string) {
+    //     let newPost: PostType = {id: new Date().getTime(), message: postMessage, likeCount: 0}
+    //     this._state.profilePage.posts.push(newPost)
+    //     this.onChange()
+    // },
+
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            let newPost: PostType = {id: new Date().getTime(), message: action.postMessage, likeCount: 0}
+            this._state.profilePage.posts.push(newPost)
+            this.onChange()
+        } else if (action.type === "CHANGE-NEW-TEXT") {
+            this._state.profilePage.newMessageTextPost = action.newText
+            this.onChange()
+        }
     }
 }
 
+
 export type StoreType = {
+    // changeNewText: (newText: string) => void
+    // addPost: (postMessage: string) => void
     _state: RootStateType
-    changeNewText: (newText: string) => void
-    addPost: (postMessage: string) => void
-    onChange: () => void
-    subscribe: (callback: () => void) => void
     getState: () => RootStateType
+    subscribe: (callback: () => void) => void
+    onChange: () => void
+    dispatch: (action: ReturnType<typeof changeNewTextAC> | ReturnType<typeof addPostAC>) => void
+}
+
+export const changeNewTextAC = (newText: string) => {
+    return {
+        type: "CHANGE-NEW-TEXT",
+        newText: newText
+    } as const
+}
+
+export const addPostAC = (postMessage: string) => {
+    return {
+        type: "ADD-POST",
+        postMessage: postMessage
+    } as const
 }
 
 export type MessageType = {
@@ -82,6 +109,7 @@ export type ProfilePageType = {
     addPostCallback: (postMessage: string) => void
     newMessageTextPost: string
     changeNewTextCallback: (newText: string) => void
+    dispatch: (action: ReturnType<typeof changeNewTextAC> | ReturnType<typeof addPostAC>) => void
 
 }
 export type SidebarType = {}

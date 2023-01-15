@@ -10,7 +10,12 @@ const Profile = (props: ProfilePageType) => {
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPosts posts={props.posts} addPostCallback={props.addPostCallback} newMessageTextPost={props.newMessageTextPost} changeNewTextCallback={props.changeNewTextCallback}/>
+            <MyPosts posts={props.posts}
+                     addPostCallback={props.addPostCallback}
+                     newMessageTextPost={props.newMessageTextPost}
+                     changeNewTextCallback={props.changeNewTextCallback}
+
+            />
         </div>
     )
 }
