@@ -5,9 +5,10 @@ export const store: StoreType = {
                 {id: 1, message: 'Hello hor u', likeCount: 2},
                 {id: 2, message: 'It is my first post,', likeCount: 2},
             ],
-            addPostCallback: () => store.dispatch,
+            // addPostCallback: () => addPostAC,
             newMessageTextPost: "",
-            changeNewTextCallback: () => store.dispatch
+            dispatch: () => store.dispatch
+            // changeNewTextCallback: () => changeNewTextAC
         },
         dialogPage: {
             dialogs: [
@@ -22,7 +23,8 @@ export const store: StoreType = {
                 {id: 1, message: "Hi"},
                 {id: 2, message: "How r u?"},
                 {id: 3, message: "Bye!"},
-            ]
+            ],
+            newMessage: ""
         },
 
         sidebar: {},
@@ -54,6 +56,14 @@ export const store: StoreType = {
         } else if (action.type === "CHANGE-NEW-TEXT") {
             this._state.profilePage.newMessageTextPost = action.newText
             this.onChange()
+        } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
+            this._state.dialogPage.newMessage = action.body
+            this.onChange()
+        } else if (action.type === "SEND-NEW-MESSAGE") {
+            let body = this._state.dialogPage.newMessage
+            this._state.dialogPage.newMessage = ''
+            this._state.dialogPage.messages.push({id: 4, message: body})
+            this.onChange()
         }
     }
 }
@@ -66,8 +76,15 @@ export type StoreType = {
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
     onChange: () => void
-    dispatch: (action: ReturnType<typeof changeNewTextAC> | ReturnType<typeof addPostAC>) => void
+    dispatch: (action: AllReturnTypes) => void
 }
+
+export type AllReturnTypes =
+    ReturnType<typeof changeNewTextAC>
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateMessageAC>
+    | ReturnType<typeof sendMessageAC>
+
 
 export const changeNewTextAC = (newText: string) => {
     return {
@@ -80,6 +97,19 @@ export const addPostAC = (postMessage: string) => {
     return {
         type: "ADD-POST",
         postMessage: postMessage
+    } as const
+}
+
+export const updateMessageAC = (body: string) => {
+    return {
+        type: "UPDATE-NEW-MESSAGE-BODY",
+        body: body
+    } as const
+}
+
+export const sendMessageAC = () => {
+    return {
+        type: "SEND-NEW-MESSAGE",
     } as const
 }
 
@@ -102,14 +132,15 @@ export type PostType = {
 export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessage: string
 }
 
 export type ProfilePageType = {
     posts: Array<PostType>
-    addPostCallback: (postMessage: string) => void
+    // addPostCallback: (postMessage: string) => void
     newMessageTextPost: string
-    changeNewTextCallback: (newText: string) => void
-    dispatch: (action: ReturnType<typeof changeNewTextAC> | ReturnType<typeof addPostAC>) => void
+    // changeNewTextCallback: (newText: string) => void
+    dispatch: (action: AllReturnTypes) => void
 
 }
 export type SidebarType = {}

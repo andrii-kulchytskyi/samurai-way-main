@@ -8,7 +8,7 @@ export let renderTree = () => {
     debugger
     ReactDOM.render(
         <App
-            store={store}/>,
+            store={store} dispatch={store.dispatch.bind(store)}/>,
         document.getElementById('root')
     );
 }

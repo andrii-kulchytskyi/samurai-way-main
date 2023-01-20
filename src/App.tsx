@@ -5,12 +5,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./components/Profile/Profile";
-import {addPostAC, StoreType} from "./redux/state/state";
-import {type} from "os";
+import {addPostAC, AllReturnTypes, changeNewTextAC, StoreType} from "./redux/state/state";
 
 
 type PropsType = {
     store: StoreType
+    dispatch: (action: AllReturnTypes) => void
 }
 
 const App = (props: PropsType) => {
@@ -24,10 +24,12 @@ const App = (props: PropsType) => {
                                                                 messages={state.dialogPage.messages}/>}/>
                 <Route path={'/profile'}
                        render={() => <Profile posts={state.profilePage.posts}
-                                              newMessageTextPost={state.profilePage.newMessageTextPost}
                                               dispatch={props.store.dispatch.bind(props.store)}
-                                              addPostCallback={props.store.dispatch.bind(props.store)}
-                                              changeNewTextCallback={props.store.dispatch.bind(props.store)}/>}/>
+                                              newMessageTextPost={state.profilePage.newMessageTextPost}
+                           // addPostCallback={props.store.dispatch.bind(props.store)}
+                           // changeNewTextCallback={props.store.dispatch.bind(props.store)}
+                       />}
+                />
                 <div className={"component"}>
                 </div>
             </div>

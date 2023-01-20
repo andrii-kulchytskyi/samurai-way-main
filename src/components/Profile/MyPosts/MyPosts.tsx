@@ -1,20 +1,22 @@
 import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Posts, {PostsType} from "./Posts/Posts";
-import {ProfilePageType} from "../../../redux/state/state";
+import {addPostAC, changeNewTextAC, ProfilePageType} from "../../../redux/state/state";
 
 
 const MyPosts = (props: ProfilePageType) => {
 
 
     const addPost = () => {
-        props.addPostCallback(props.newMessageTextPost)
-        props.changeNewTextCallback("")
+        props.dispatch({type: "ADD-POST", postMessage: props.newMessageTextPost})
+        props.dispatch({type: "CHANGE-NEW-TEXT", newText: ""})
+        // props.addPostCallback(props.newMessageTextPost)
+        // props.changeNewTextCallback("")
 
     }
     const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeNewTextCallback(e.currentTarget.value)
-
+        props.dispatch({type: "CHANGE-NEW-TEXT", newText: e.currentTarget.value})
+        // props.changeNewTextCallback(e.currentTarget.value)
     }
 
     return (<div className={s.item}>
