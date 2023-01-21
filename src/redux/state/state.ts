@@ -1,3 +1,6 @@
+import profile from "../../components/Profile/Profile";
+import {profileReducer} from "./profileReducer";
+
 export const store: StoreType = {
     _state: {
         profilePage: {
@@ -24,7 +27,8 @@ export const store: StoreType = {
                 {id: 2, message: "How r u?"},
                 {id: 3, message: "Bye!"},
             ],
-            newMessage: ""
+            newMessage: "",
+            dispatch: () => store.dispatch
         },
 
         sidebar: {},
@@ -49,22 +53,27 @@ export const store: StoreType = {
     // },
 
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            let newPost: PostType = {id: new Date().getTime(), message: action.postMessage, likeCount: 0}
-            this._state.profilePage.posts.push(newPost)
-            this.onChange()
-        } else if (action.type === "CHANGE-NEW-TEXT") {
-            this._state.profilePage.newMessageTextPost = action.newText
-            this.onChange()
-        } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
-            this._state.dialogPage.newMessage = action.body
-            this.onChange()
-        } else if (action.type === "SEND-NEW-MESSAGE") {
-            let body = this._state.dialogPage.newMessage
-            this._state.dialogPage.newMessage = ''
-            this._state.dialogPage.messages.push({id: 4, message: body})
-            this.onChange()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogPage = profileReducer(this._state.dialogPage, action)
+        this._state.sidebar = profileReducer(this._state.sidebar, action)
+        // this.onChange()
+
+        // if (action.type === "ADD-POST") {
+        //     let newPost: PostType = {id: new Date().getTime(), message: action.postMessage, likeCount: 0}
+        //     this._state.profilePage.posts.push(newPost)
+        //     this.onChange()
+        // } else if (action.type === "CHANGE-NEW-TEXT") {
+        //     this._state.profilePage.newMessageTextPost = action.newText
+        //     this.onChange()
+        // } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
+        //     this._state.dialogPage.newMessage = action.body
+        //     this.onChange()
+        // } else if (action.type === "SEND-NEW-MESSAGE") {
+        //     let body = this._state.dialogPage.newMessage
+        //     this._state.dialogPage.newMessage = ''
+        //     this._state.dialogPage.messages.push({id: 4, message: body})
+        //     this.onChange()
+        // }
     }
 }
 
@@ -133,6 +142,7 @@ export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessage: string
+    dispatch: (action: AllReturnTypes) => void
 }
 
 export type ProfilePageType = {

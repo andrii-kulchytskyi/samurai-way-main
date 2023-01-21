@@ -21,7 +21,10 @@ const App = (props: PropsType) => {
                 <Header/>
                 <Navbar/>
                 <Route path={'/dialogs'} render={() => <Dialogs dialogs={state.dialogPage.dialogs}
-                                                                messages={state.dialogPage.messages}/>}/>
+                                                                messages={state.dialogPage.messages}
+                                                                newMessage={state.dialogPage.newMessage}
+                                                                dispatch={props.store.dispatch.bind(props.store)}
+                />}/>
                 <Route path={'/profile'}
                        render={() => <Profile posts={state.profilePage.posts}
                                               dispatch={props.store.dispatch.bind(props.store)}
