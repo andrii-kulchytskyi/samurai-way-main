@@ -1,5 +1,6 @@
-import profile from "../../components/Profile/Profile";
 import {profileReducer} from "./profileReducer";
+import {dialogsReducer} from "./dialogsReducer";
+import {sidebarReducer} from "./sidebarReducer";
 
 export const store: StoreType = {
     _state: {
@@ -33,11 +34,11 @@ export const store: StoreType = {
 
         sidebar: {},
     },
-    onChange() {
+    _callSubscriber() {
         console.log("type of b1tCH")
     },
     subscribe(callback: () => void) {
-        this.onChange = callback
+        this._callSubscriber = callback
     },
     getState() {
         return this._state
@@ -53,10 +54,11 @@ export const store: StoreType = {
     // },
 
     dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogPage = profileReducer(this._state.dialogPage, action)
-        this._state.sidebar = profileReducer(this._state.sidebar, action)
-        // this.onChange()
+        this._state.profilePage = profileReducer(state.profilePage, action)
+        this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        // this._callSubscriber()
 
         // if (action.type === "ADD-POST") {
         //     let newPost: PostType = {id: new Date().getTime(), message: action.postMessage, likeCount: 0}
@@ -84,7 +86,7 @@ export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
-    onChange: () => void
+    _callSubscriber: () => void
     dispatch: (action: AllReturnTypes) => void
 }
 

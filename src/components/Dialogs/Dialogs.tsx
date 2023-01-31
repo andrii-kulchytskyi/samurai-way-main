@@ -26,12 +26,12 @@ const Dialogs = (props: DialogPageType) => {
                     })}
 
                     <div className={s.messages}>
-                        {store.getState().dialogPage.messages.map(el => {
+                        {store.getState().dialogPage.messages.map((el, index) => {
                             return (
-                                <>
+                                <div key={index}>
                                     <Message message={el.message}/>
 
-                                </>
+                                </div>
                             )
                         })}
                     </div>
