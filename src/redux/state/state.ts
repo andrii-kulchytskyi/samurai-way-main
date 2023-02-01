@@ -53,8 +53,8 @@ export const store: StoreType = {
     //     this.onChange()
     // },
 
-    dispatch(action) {
-        this._state.profilePage = profileReducer(state.profilePage, action)
+    dispatch(action: AllReturnTypes, state: StoreType) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
@@ -87,7 +87,7 @@ export type StoreType = {
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
     _callSubscriber: () => void
-    dispatch: (action: AllReturnTypes) => void
+    dispatch: (action: AllReturnTypes, state: any) => void
 }
 
 export type AllReturnTypes =
