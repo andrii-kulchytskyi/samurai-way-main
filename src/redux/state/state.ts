@@ -53,12 +53,12 @@ export const store: StoreType = {
     //     this.onChange()
     // },
 
-    dispatch(action: AllReturnTypes, state: StoreType) {
+    dispatch(action: AllReturnTypes) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-        // this._callSubscriber()
+        this._callSubscriber()
 
         // if (action.type === "ADD-POST") {
         //     let newPost: PostType = {id: new Date().getTime(), message: action.postMessage, likeCount: 0}

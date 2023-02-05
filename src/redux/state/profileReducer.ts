@@ -1,5 +1,5 @@
 import React from 'react';
-import {AllReturnTypes, PostType} from "./state";
+import {AllReturnTypes, PostType, StoreType} from "./state";
 
 export const profileReducer = (action: AllReturnTypes, state: any) => {
     switch (action.type) {
