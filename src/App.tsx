@@ -5,12 +5,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./components/Profile/Profile";
-import {addPostAC, AllReturnTypes, changeNewTextAC, StoreType} from "./redux/state/state";
+import {Store} from "redux";
 
 
 type PropsType = {
     store: StoreType
-    dispatch: (action: AllReturnTypes) => void
+    dispatch: (action: any) => void
 }
 
 const App = (props: PropsType) => {

@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Posts, {PostsType} from "./Posts/Posts";
-import {addPostAC, changeNewTextAC, ProfilePageType} from "../../../redux/state/state";
+import {ProfilePageType} from "../../../redux/state/state";
 
 
 const MyPosts = (props: ProfilePageType) => {

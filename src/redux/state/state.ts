@@ -1,5 +1,5 @@
-import {profileReducer} from "./profileReducer";
-import {dialogsReducer} from "./dialogsReducer";
+import {addPostAC, changeNewTextAC, profileReducer} from "./profileReducer";
+import {dialogsReducer, sendMessageAC, updateMessageAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 
 export const store: StoreType = {
@@ -53,7 +53,7 @@ export const store: StoreType = {
     //     this.onChange()
     // },
 
-    dispatch(action: AllReturnTypes) {
+    dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
@@ -87,42 +87,42 @@ export type StoreType = {
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
     _callSubscriber: () => void
-    dispatch: (action: AllReturnTypes, state: any) => void
+    dispatch: (action: any, state: any) => void
 }
 
-export type AllReturnTypes =
-    ReturnType<typeof changeNewTextAC>
-    | ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateMessageAC>
-    | ReturnType<typeof sendMessageAC>
+// export type AllReturnTypes =
+//     ReturnType<typeof changeNewTextAC>
+//     | ReturnType<typeof addPostAC>
+//     | ReturnType<typeof updateMessageAC>
+//     | ReturnType<typeof sendMessageAC>
 
+//
+// export const changeNewTextAC = (newText: string) => {
+//     return {
+//         type: "CHANGE-NEW-TEXT",
+//         newText: newText
+//     } as const
+// }
+//
+// export const addPostAC = (postMessage: string) => {
+//     return {
+//         type: "ADD-POST",
+//         postMessage: postMessage
+//     } as const
+// }
 
-export const changeNewTextAC = (newText: string) => {
-    return {
-        type: "CHANGE-NEW-TEXT",
-        newText: newText
-    } as const
-}
-
-export const addPostAC = (postMessage: string) => {
-    return {
-        type: "ADD-POST",
-        postMessage: postMessage
-    } as const
-}
-
-export const updateMessageAC = (body: string) => {
-    return {
-        type: "UPDATE-NEW-MESSAGE-BODY",
-        body: body
-    } as const
-}
-
-export const sendMessageAC = () => {
-    return {
-        type: "SEND-NEW-MESSAGE",
-    } as const
-}
+// export const updateMessageAC = (body: string) => {
+//     return {
+//         type: "UPDATE-NEW-MESSAGE-BODY",
+//         body: body
+//     } as const
+// }
+//
+// export const sendMessageAC = () => {
+//     return {
+//         type: "SEND-NEW-MESSAGE",
+//     } as const
+// }
 
 export type MessageType = {
     id: number
@@ -144,7 +144,7 @@ export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessage: string
-    dispatch: (action: AllReturnTypes) => void
+    dispatch: () => void
 }
 
 export type ProfilePageType = {
@@ -152,7 +152,7 @@ export type ProfilePageType = {
     // addPostCallback: (postMessage: string) => void
     newMessageTextPost: string
     // changeNewTextCallback: (newText: string) => void
-    dispatch: (action: AllReturnTypes) => void
+    dispatch: () => void
 
 }
 export type SidebarType = {}

@@ -1,7 +1,8 @@
 import React from 'react';
-import {AllReturnTypes} from "./state";
+import {addPostAC, changeNewTextAC} from "./profileReducer";
 
-export const dialogsReducer = (action: AllReturnTypes, state: any) => {
+export const dialogsReducer = (action:
+                                   any, state: any) => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
             state.newMessage = action.body
@@ -16,15 +17,15 @@ export const dialogsReducer = (action: AllReturnTypes, state: any) => {
             return state;
     }
 }
-// export const updateMessageAC = (body: string) => {
-//     return {
-//         type: "UPDATE-NEW-MESSAGE-BODY",
-//         body: body
-//     } as const
-// }
-//
-// export const sendMessageAC = () => {
-//     return {
-//         type: "SEND-NEW-MESSAGE",
-//     } as const
-// }
+export const updateMessageAC = (body: string) => {
+    return {
+        type: "UPDATE-NEW-MESSAGE-BODY",
+        body: body
+    } as const
+}
+
+export const sendMessageAC = () => {
+    return {
+        type: "SEND-NEW-MESSAGE",
+    } as const
+}
