@@ -12,7 +12,7 @@ export let renderTree = (state: RootStateType) => {
     );
 }
 
-renderTree(store.getState())
-store.subscribe(() => renderTree)
+// renderTree(store.getState())
+// store.subscribe(() => renderTree)
 
 

@@ -54,7 +54,7 @@ export const store: StoreType = {
     // },
 
     dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.profilePage = profileReducer(action, this._state.profilePage)
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
@@ -87,7 +87,7 @@ export type StoreType = {
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
     _callSubscriber: () => void
-    dispatch: (action: any, state: any) => void
+    dispatch: (action: any) => void
 }
 
 // export type AllReturnTypes =
@@ -144,7 +144,7 @@ export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessage: string
-    dispatch: () => void
+    dispatch: (action: any) => void
 }
 
 export type ProfilePageType = {
@@ -152,7 +152,7 @@ export type ProfilePageType = {
     // addPostCallback: (postMessage: string) => void
     newMessageTextPost: string
     // changeNewTextCallback: (newText: string) => void
-    dispatch: () => void
+    dispatch: (action: any) => void
 
 }
 export type SidebarType = {}

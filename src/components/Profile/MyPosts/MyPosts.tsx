@@ -8,10 +8,10 @@ const MyPosts = (props: ProfilePageType) => {
 
 
     const addPost = () => {
-        props.dispatch({type: "ADD-POST", postMessage: props.newMessageTextPost})
-        props.dispatch({type: "CHANGE-NEW-TEXT", newText: ""})
-        // props.addPostCallback(props.newMessageTextPost)
-        // props.changeNewTextCallback("")
+        // props.dispatch({type: "ADD-POST", postMessage: props.newMessageTextPost})
+        // props.dispatch({type: "CHANGE-NEW-TEXT", newText: ""})
+        props.addPostCallback(props.newMessageTextPost)
+        props.changeNewTextCallback("")
 
     }
     const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
