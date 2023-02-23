@@ -5,12 +5,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./components/Profile/Profile";
-import {StoreType} from "./redux/state/state";
+import {ActionsType, StoreType} from "./redux/state/store";
 
 
 type PropsType = {
     store: StoreType
-    dispatch: (action:any) => void
+    dispatch: (action: ActionsType) => void
 }
 
 const App = (props: PropsType) => {
@@ -32,6 +32,7 @@ const App = (props: PropsType) => {
                            // addPostCallback={props.store.dispatch.bind(props.store)}
                            // changeNewTextCallback={props.store.dispatch.bind(props.store)}
                        />}
+
                 />
                 <div className={"component"}>
                 </div>

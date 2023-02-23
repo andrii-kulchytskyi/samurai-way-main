@@ -9,9 +9,9 @@ export const store: StoreType = {
                 {id: 1, message: 'Hello hor u', likeCount: 2},
                 {id: 2, message: 'It is my first post,', likeCount: 2},
             ],
-            // addPostCallback: () => addPostAC,
             newMessageTextPost: "",
             dispatch: () => store.dispatch
+            // addPostCallback: () => addPostAC,
             // changeNewTextCallback: () => changeNewTextAC
         },
         dialogPage: {
@@ -34,11 +34,11 @@ export const store: StoreType = {
 
         sidebar: {},
     },
-    _callSubscriber() {
+    _onChange() {
         console.log("type of b1tCH")
     },
-    subscribe(callback: () => void) {
-        this._callSubscriber = callback
+    subscribe(observer) {
+        this._onChange = observer
     },
     getState() {
         return this._state
@@ -52,13 +52,12 @@ export const store: StoreType = {
     //     this._state.profilePage.posts.push(newPost)
     //     this.onChange()
     // },
-
-    dispatch(action) {
-        this._state.profilePage = profileReducer(action, this._state.profilePage)
+    dispatch(action: ActionsType) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-        this._callSubscriber()
+        this._onChange()
 
         // if (action.type === "ADD-POST") {
         //     let newPost: PostType = {id: new Date().getTime(), message: action.postMessage, likeCount: 0}
@@ -83,18 +82,18 @@ export const store: StoreType = {
 export type StoreType = {
     // changeNewText: (newText: string) => void
     // addPost: (postMessage: string) => void
-    _state: RootStateType
-    getState: () => RootStateType
-    subscribe: (callback: () => void) => void
-    _callSubscriber: () => void
-    dispatch: (action: any) => void
+    _state: StateType
+    getState: () => StateType
+    subscribe: (observer: () => void) => void
+    _onChange: () => void
+    dispatch: (action: ActionsType) => void
 }
 
-// export type AllReturnTypes =
-//     ReturnType<typeof changeNewTextAC>
-//     | ReturnType<typeof addPostAC>
-//     | ReturnType<typeof updateMessageAC>
-//     | ReturnType<typeof sendMessageAC>
+export type ActionsType =
+    ReturnType<typeof changeNewTextAC>
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateMessageAC>
+    | ReturnType<typeof sendMessageAC>
 
 //
 // export const changeNewTextAC = (newText: string) => {
@@ -141,23 +140,23 @@ export type PostType = {
 }
 
 export type DialogPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
+    dialogs: DialogType[]
+    messages: MessageType[]
     newMessage: string
-    dispatch: (action: any) => void
+    dispatch: (action: ActionsType) => void
 }
 
 export type ProfilePageType = {
-    posts: Array<PostType>
-    // addPostCallback: (postMessage: string) => void
+    posts: PostType[]
     newMessageTextPost: string
+    dispatch: (action: ActionsType) => void
     // changeNewTextCallback: (newText: string) => void
-    dispatch: (action: any) => void
+    // addPostCallback: (postMessage: string) => void
 
 }
 export type SidebarType = {}
 
-export type RootStateType = {
+export type StateType = {
     profilePage: ProfilePageType
     dialogPage: DialogPageType
     sidebar: SidebarType

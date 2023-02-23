@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const sidebarReducer = (action: any, state: any) => {
+export const sidebarReducer = (state: any, action: any) => {
     return state
 }

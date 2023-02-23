@@ -1,8 +1,8 @@
 import React from 'react';
 import {addPostAC, changeNewTextAC} from "./profileReducer";
+import {ActionsType, DialogPageType} from "./store";
 
-export const dialogsReducer = (action:
-                                   any, state: any) => {
+export const dialogsReducer = (state: DialogPageType, action: ActionsType): DialogPageType => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
             state.newMessage = action.body
@@ -15,6 +15,8 @@ export const dialogsReducer = (action:
             state.messages.push({id: 4, message: body})
             // state.onChange()
             return state;
+        default:
+            return state
     }
 }
 export const updateMessageAC = (body: string) => {
