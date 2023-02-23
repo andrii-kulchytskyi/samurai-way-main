@@ -3,17 +3,19 @@ import s from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Messages/Message";
 import {DialogPageType, store} from "../../redux/state/store";
-import {sendMessageAC, updateMessageAC} from "../../redux/state/dialogsReducer";
-import {changeNewTextAC} from "../../redux/state/profileReducer";
+import {sendMessageAC, updateMessageAC} from "../../redux/dialogsReducer";
+import {changeNewTextAC} from "../../redux/profileReducer";
 
 
 const Dialogs = (props: DialogPageType) => {
 
         const onClickAddMessage = () => {
-            props.dispatch(sendMessageAC())
+            // props.dispatch(sendMessageAC())
+            sendMessageAC()
         }
         const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-            props.dispatch(updateMessageAC(e.currentTarget.value))
+            // props.dispatch(updateMessageAC(e.currentTarget.value))
+            updateMessageAC(e.currentTarget.value)
         }
 
         return (

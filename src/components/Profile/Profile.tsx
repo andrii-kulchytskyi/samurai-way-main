@@ -12,7 +12,7 @@ const Profile = (props: ProfilePageType) => {
             <ProfileInfo/>
             <MyPosts posts={props.posts}
                      newMessageTextPost={props.newMessageTextPost}
-                     dispatch={props.dispatch}
+                // dispatch={props.dispatch}
                 // addPostCallback={props.addPostCallback}
                 // changeNewTextCallback={props.changeNewTextCallback}
             />

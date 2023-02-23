@@ -1,6 +1,6 @@
-import {addPostAC, changeNewTextAC, profileReducer} from "./profileReducer";
-import {dialogsReducer, sendMessageAC, updateMessageAC} from "./dialogsReducer";
-import {sidebarReducer} from "./sidebarReducer";
+import {addPostAC, changeNewTextAC, profileReducer} from "../profileReducer";
+import {dialogsReducer, sendMessageAC, updateMessageAC} from "../dialogsReducer";
+import {sidebarReducer} from "../sidebarReducer";
 
 export const store: StoreType = {
     _state: {
@@ -10,7 +10,7 @@ export const store: StoreType = {
                 {id: 2, message: 'It is my first post,', likeCount: 2},
             ],
             newMessageTextPost: "",
-            dispatch: () => store.dispatch
+            // dispatch: () => store.dispatch
             // addPostCallback: () => addPostAC,
             // changeNewTextCallback: () => changeNewTextAC
         },
@@ -29,7 +29,7 @@ export const store: StoreType = {
                 {id: 3, message: "Bye!"},
             ],
             newMessage: "",
-            dispatch: () => store.dispatch
+            // dispatch: () => store.dispatch
         },
 
         sidebar: {},
@@ -143,13 +143,13 @@ export type DialogPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
     newMessage: string
-    dispatch: (action: ActionsType) => void
+    // dispatch: (action: ActionsType) => void
 }
 
 export type ProfilePageType = {
     posts: PostType[]
     newMessageTextPost: string
-    dispatch: (action: ActionsType) => void
+    // dispatch: (action: ActionsType) => void
     // changeNewTextCallback: (newText: string) => void
     // addPostCallback: (postMessage: string) => void
 
