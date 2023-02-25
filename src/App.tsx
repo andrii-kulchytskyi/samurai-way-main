@@ -6,6 +6,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./components/Profile/Profile";
 import {ActionsType, StoreType} from "./redux/state/store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type PropsType = {
@@ -20,15 +21,19 @@ const App = (props: PropsType) => {
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
-                <Route path={'/dialogs'} render={() => <Dialogs dialogs={state.dialogPage.dialogs}
-                                                                messages={state.dialogPage.messages}
-                                                                newMessage={state.dialogPage.newMessage}
-                                                                // dispatch={props.store.dispatch.bind(props.store)}
+                <Route path={'/dialogs'} render={() => <DialogsContainer
+                    store={props.store}
+                    // dialogs={state.dialogPage.dialogs}
+                    // messages={state.dialogPage.messages}
+                    // newMessage={state.dialogPage.newMessage}
+                    // dispatch={props.store.dispatch.bind(props.store)}
                 />}/>
                 <Route path={'/profile'}
-                       render={() => <Profile posts={state.profilePage.posts}
-                                              // dispatch={props.store.dispatch.bind(props.store)}
-                                              newMessageTextPost={state.profilePage.newMessageTextPost}
+                       render={() => <Profile store={props.store}
+
+                           // posts={state.profilePage.posts}
+                           //                    newMessageTextPost={state.profilePage.newMessageTextPost}
+                           // dispatch={props.store.dispatch.bind(props.store)}
                            // addPostCallback={props.store.dispatch.bind(props.store)}
                            // changeNewTextCallback={props.store.dispatch.bind(props.store)}
                        />}

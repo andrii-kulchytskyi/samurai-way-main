@@ -5,17 +5,20 @@ import {Message} from "./Messages/Message";
 import {DialogPageType, store} from "../../redux/state/store";
 import {sendMessageAC, updateMessageAC} from "../../redux/dialogsReducer";
 import {changeNewTextAC} from "../../redux/profileReducer";
+import DialogsContainer from "./DialogsContainer";
 
 
-const Dialogs = (props: DialogPageType) => {
+const Dialogs = (props: DialogsContainer) => {
+
+        let state = props.dialogsPage
 
         const onClickAddMessage = () => {
             // props.dispatch(sendMessageAC())
-            sendMessageAC()
+            props.sendMessage()
         }
         const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
             // props.dispatch(updateMessageAC(e.currentTarget.value))
-            updateMessageAC(e.currentTarget.value)
+            props.updateMessageAC(e.currentTarget.value)
         }
 
         return (
