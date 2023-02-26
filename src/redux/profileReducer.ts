@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActionsType, PostType, ProfilePageType, StoreType} from "./state/store";
+import {ActionsType, PostType, ProfilePageType, StoreType} from "./store";
 
 let initState = {
     posts: [
@@ -9,18 +9,14 @@ let initState = {
     newMessageTextPost: "",
 }
 
-export const profileReducer = (state:ProfilePageType = initState, action: ActionsType
+export const profileReducer = (state: ProfilePageType = initState, action: ActionsType
 ): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST":
-            let newPost: PostType = {id: new Date().getTime(), message: action.postMessage, likeCount: 0}
-            // state.posts.push(newPost)
-            // state.onChange()
+            let newPost: PostType = {id: new Date().getTime(), message: "d", likeCount: 0}
             state.posts.push(newPost)
             return state
         case "CHANGE-NEW-TEXT":
-            // state.newMessageTextPost = action.newText
-            // state.onChange()
             state.newMessageTextPost = action.newText
             return state
         default:
@@ -28,17 +24,15 @@ export const profileReducer = (state:ProfilePageType = initState, action: Action
     }
 }
 
-
-export const changeNewTextAC = (newText: string) => {
+export const updateNewPostTextAC = (text: string) => {
     return {
         type: "CHANGE-NEW-TEXT",
-        newText: newText
+        newText: text
     } as const
 }
 
-export const addPostAC = (postMessage: string) => {
+export const addPostAC = () => {
     return {
         type: "ADD-POST",
-        postMessage: postMessage
     } as const
 }

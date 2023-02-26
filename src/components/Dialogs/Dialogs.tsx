@@ -2,13 +2,12 @@ import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Messages/Message";
-import {DialogPageType, store} from "../../redux/state/store";
+import {DialogPageType, store} from "../../redux/store";
 import {sendMessageAC, updateMessageAC} from "../../redux/dialogsReducer";
-import {changeNewTextAC} from "../../redux/profileReducer";
-import DialogsContainer from "./DialogsContainer";
+import {updateNewPostTextAC} from "../../redux/profileReducer";
 
 
-const Dialogs = (props: DialogsContainer) => {
+const Dialogs = (props: any) => {
 
         let state = props.dialogsPage
 

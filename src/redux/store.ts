@@ -1,8 +1,8 @@
-import {addPostAC, changeNewTextAC, profileReducer} from "../profileReducer";
-import {dialogsReducer, sendMessageAC, updateMessageAC} from "../dialogsReducer";
-import {sidebarReducer} from "../sidebarReducer";
+import {addPostAC, updateNewPostTextAC, profileReducer} from "./profileReducer";
+import {dialogsReducer, sendMessageAC, updateMessageAC} from "./dialogsReducer";
+import {sidebarReducer} from "./sidebarReducer";
 
-export const store: StoreType = {
+export let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -34,7 +34,7 @@ export const store: StoreType = {
 
         sidebar: {},
     },
-    _onChange() {
+    _onChange(state: StateType) {
         console.log("type of b1tCH")
     },
     subscribe(observer) {
@@ -57,7 +57,7 @@ export const store: StoreType = {
         this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-        this._onChange()
+        this._onChange(store.getState())
 
         // if (action.type === "ADD-POST") {
         //     let newPost: PostType = {id: new Date().getTime(), message: action.postMessage, likeCount: 0}
@@ -85,12 +85,13 @@ export type StoreType = {
     _state: StateType
     getState: () => StateType
     subscribe: (observer: () => void) => void
-    _onChange: () => void
+    _onChange: (state: StateType) => void
     dispatch: (action: ActionsType) => void
 }
 
+
 export type ActionsType =
-    ReturnType<typeof changeNewTextAC>
+    ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateMessageAC>
     | ReturnType<typeof sendMessageAC>
@@ -127,25 +128,21 @@ export type MessageType = {
     id: number
     message: string
 }
-
 export type DialogType = {
     id: number
     name: string
 }
-
 export type PostType = {
     id: number
     message: string
     likeCount: number
 }
-
 export type DialogPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
     newMessage: string
     // dispatch: (action: ActionsType) => void
 }
-
 export type ProfilePageType = {
     posts: PostType[]
     newMessageTextPost: string
@@ -155,7 +152,6 @@ export type ProfilePageType = {
 
 }
 export type SidebarType = {}
-
 export type StateType = {
     profilePage: ProfilePageType
     dialogPage: DialogPageType

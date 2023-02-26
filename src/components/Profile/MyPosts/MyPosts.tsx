@@ -1,8 +1,8 @@
 import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Posts, {PostsType} from "./Posts/Posts";
-import {ProfilePageType} from "../../../redux/state/store";
-import {addPostAC, changeNewTextAC} from "../../../redux/profileReducer";
+import {ProfilePageType} from "../../../redux/store";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 
 
 const MyPosts = (props: ProfilePageType) => {
@@ -14,7 +14,7 @@ const MyPosts = (props: ProfilePageType) => {
         // props.changeNewTextCallback("")
     }
     const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        changeNewTextAC(e.currentTarget.value)
+        updateNewPostTextAC(e.currentTarget.value)
         // props.dispatch(changeNewTextAC(e.currentTarget.value))
         // props.changeNewTextCallback(e.currentTarget.value)
     }

@@ -1,30 +1,33 @@
-import React, {ChangeEvent} from 'react';
-import s from "./Dialogs.module.css";
-import {DialogItem} from "./DialogItem/DialogItem";
-import {Message} from "./Messages/Message";
-import {DialogPageType, store} from "../../redux/state/store";
-import {sendMessageAC, updateMessageAC} from "../../redux/dialogsReducer";
-import {changeNewTextAC} from "../../redux/profileReducer";
+import {StoreType} from "../../redux/store";
+import StoreContext from "../../StoreContext";
 import Dialogs from "./Dialogs";
 
 
-const DialogsContainer = (props: any) => {
+export type DialogsContainerType = {
+    store: StoreType
+}
 
-        let state = store.getState().dialogPage
+const DialogsContainer = (props: DialogsContainerType) => {
+    return (
+        <StoreContext.Consumer>
+            {
+                store => {
+                    let state = store.getState().dialogPage;
+                    let onSendMessageClick = () => {
+                        store.dispatch(sendMessageAC())
+                    }
+                    let onNewMessageChange = (body: string) => {
+                        store.dispatch(updateMessageAC(body))
+                    }
 
-        const onClickAddMessage = () => {
-            // props.dispatch(sendMessageAC())
-            props.store.dispatch.sendMessageAC()
-        }
-        const onChangeMessage = (body: any) => {
-            // props.dispatch(updateMessageAC(e.currentTarget.value))
-            props.store.dispatch.updateMessageAC(body)
-        }
-
-        return (
-            <Dialogs dialogsPage={state} updateMessageBody={onChangeMessage} sendMessage={onClickAddMessage}/>
-        );
-    }
-;
-
-export default DialogsContainer;
+                    return (
+                        <Dialogs dialogsPage={state}
+                                 updateNewMessageBodyCreator={onNewMessageChange}
+                                 sendMessage={onSendMessageClick}
+                        />
+                    );
+                }
+            }
+        </StoreContext.Consumer>
+    )
+}
