@@ -2,28 +2,27 @@ import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Messages/Message";
-import {DialogPageType, store} from "../../redux/store";
-import {sendMessageAC, updateMessageAC} from "../../redux/dialogsReducer";
-import {updateNewPostTextAC} from "../../redux/profileReducer";
+import store from "../../redux/redux-store";
+import {DialogPageType, DialogType, MessageType} from "../../redux/store";
 
 
-const Dialogs = (props: any) => {
-
-        let state = props.dialogsPage
-
+type DialogsType = {
+    dialogsPage: DialogPageType
+    updateNewMessageBodyCreator: (text: string) => void
+    sendMessage: () => void
+}
+const Dialogs = (props: DialogsType) => {
         const onClickAddMessage = () => {
-            // props.dispatch(sendMessageAC())
             props.sendMessage()
         }
         const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-            // props.dispatch(updateMessageAC(e.currentTarget.value))
-            props.updateMessageAC(e.currentTarget.value)
+            props.updateNewMessageBodyCreator(e.currentTarget.value)
         }
 
         return (
             <div className={s.dialogs}>
                 <div className={s.dialogsItems}>
-                    {props.dialogs.map(el => {
+                    {store.getState().dialogsPage.dialogs.map(el => {
                         return (
                             <ul>
                                 <li><DialogItem name={el.name} id={el.id}/></li>
@@ -32,7 +31,7 @@ const Dialogs = (props: any) => {
                     })}
 
                     <div className={s.messages}>
-                        {store.getState().dialogPage.messages.map((el, index) => {
+                        {store.getState().dialogsPage.messages.map((el, index) => {
                             return (
                                 <div key={index}>
                                     <Message message={el.message}/>

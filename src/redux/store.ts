@@ -14,7 +14,7 @@ export let store: StoreType = {
             // addPostCallback: () => addPostAC,
             // changeNewTextCallback: () => changeNewTextAC
         },
-        dialogPage: {
+        dialogsPage: {
             dialogs: [
                 {id: 1, name: "Andrii"},
                 {id: 2, name: "Dmitry"},
@@ -43,45 +43,16 @@ export let store: StoreType = {
     getState() {
         return this._state
     },
-    // changeNewText(newText: string) {
-    //     this._state.profilePage.newMessageTextPost = newText
-    //     this.onChange()
-    // },
-    // addPost(postMessage: string) {
-    //     let newPost: PostType = {id: new Date().getTime(), message: postMessage, likeCount: 0}
-    //     this._state.profilePage.posts.push(newPost)
-    //     this.onChange()
-    // },
     dispatch(action: ActionsType) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogPage = dialogsReducer(this._state.dialogPage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-
         this._onChange(store.getState())
-
-        // if (action.type === "ADD-POST") {
-        //     let newPost: PostType = {id: new Date().getTime(), message: action.postMessage, likeCount: 0}
-        //     this._state.profilePage.posts.push(newPost)
-        //     this.onChange()
-        // } else if (action.type === "CHANGE-NEW-TEXT") {
-        //     this._state.profilePage.newMessageTextPost = action.newText
-        //     this.onChange()
-        // } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
-        //     this._state.dialogPage.newMessage = action.body
-        //     this.onChange()
-        // } else if (action.type === "SEND-NEW-MESSAGE") {
-        //     let body = this._state.dialogPage.newMessage
-        //     this._state.dialogPage.newMessage = ''
-        //     this._state.dialogPage.messages.push({id: 4, message: body})
-        //     this.onChange()
-        // }
     }
 }
 
 
 export type StoreType = {
-    // changeNewText: (newText: string) => void
-    // addPost: (postMessage: string) => void
     _state: StateType
     getState: () => StateType
     subscribe: (observer: () => void) => void
@@ -96,33 +67,6 @@ export type ActionsType =
     | ReturnType<typeof updateMessageAC>
     | ReturnType<typeof sendMessageAC>
 
-//
-// export const changeNewTextAC = (newText: string) => {
-//     return {
-//         type: "CHANGE-NEW-TEXT",
-//         newText: newText
-//     } as const
-// }
-//
-// export const addPostAC = (postMessage: string) => {
-//     return {
-//         type: "ADD-POST",
-//         postMessage: postMessage
-//     } as const
-// }
-
-// export const updateMessageAC = (body: string) => {
-//     return {
-//         type: "UPDATE-NEW-MESSAGE-BODY",
-//         body: body
-//     } as const
-// }
-//
-// export const sendMessageAC = () => {
-//     return {
-//         type: "SEND-NEW-MESSAGE",
-//     } as const
-// }
 
 export type MessageType = {
     id: number
@@ -154,7 +98,7 @@ export type ProfilePageType = {
 export type SidebarType = {}
 export type StateType = {
     profilePage: ProfilePageType
-    dialogPage: DialogPageType
+    dialogsPage: DialogPageType
     sidebar: SidebarType
 
 }

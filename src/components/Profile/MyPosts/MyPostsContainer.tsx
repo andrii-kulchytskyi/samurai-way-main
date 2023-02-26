@@ -2,34 +2,35 @@ import React, {ChangeEvent} from "react";
 import {ProfilePageType, StoreType} from "../../../redux/store";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 import StoreContext from "../../../StoreContext";
-
+import MyPosts from "./MyPosts";
 
 
 export type MyPostsContainerType = {
     store: StoreType
 }
-const MyPostsContainer = (props: MyPostsContainerType) => {
-
-    return (<StoreContext.Consumer>{
-            store => {
-                let state = props.store.getState();
+const MyPostsContainer = () => {
+    return (
+        <StoreContext.Consumer>
+            {store => {
+                let state = store.getState();
                 const addPost = () => {
-                    props.store.dispatch(addPostAC())
+                    store.dispatch(addPostAC());
+                };
+                const onChangePostHandler = (text: string) => {
+                    store.dispatch(updateNewPostTextAC(text));
+                };
 
-                }
-                const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-                    props.store.dispatch(updateNewPostTextAC(e.currentTarget.value))
-
-                }
-            }
-            return
-            <MyPosts newMessageTextPost={state.getState().profilePage.newMessageTextPost}
-            posts={store.getState().posts}
-            addPost={addPost}
-            changePost={onChangePostHandler}/>
-        }
-
+                return (
+                    <MyPosts
+                        posts={state.profilePage.posts}
+                        newMessageTextPost={state.profilePage.newMessageTextPost}
+                        addPost={addPost}
+                        updateNewPostText={onChangePostHandler}
+                    />
+                );
+            }}
         </StoreContext.Consumer>
-    )
-}
+    );
+};
+
 export default MyPostsContainer

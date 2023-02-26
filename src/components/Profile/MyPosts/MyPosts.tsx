@@ -1,22 +1,24 @@
 import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Posts, {PostsType} from "./Posts/Posts";
-import {ProfilePageType} from "../../../redux/store";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 
 
-const MyPosts = (props: ProfilePageType) => {
+
+type MyPostsProps = {
+    posts: PostsType[],
+    newMessageTextPost: string,
+    addPost: () => void,
+    updateNewPostText: (text: string) => void
+}
+
+const MyPosts = (props: MyPostsProps) => {
 
     const addPost = () => {
-        addPostAC(props.newMessageTextPost)
-        // props.dispatch(addPostAC(props.newMessageTextPost))
-        // props.addPostCallback(props.newMessageTextPost)
-        // props.changeNewTextCallback("")
+        props.addPost()
     }
     const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        updateNewPostTextAC(e.currentTarget.value)
-        // props.dispatch(changeNewTextAC(e.currentTarget.value))
-        // props.changeNewTextCallback(e.currentTarget.value)
+        props.updateNewPostText(e.currentTarget.value)
+
     }
 
     return (<div className={s.item}>
@@ -25,9 +27,9 @@ const MyPosts = (props: ProfilePageType) => {
             <button onClick={addPost}>Add post
             </button>
             <div></div>
-            {props.posts.map(el => {
+            {props.posts.map((el,index) => {
                 return (
-                    <Posts message={el.message} likeCount={el.likeCount} key={el.id}/>
+                    <Posts message={el.message} likeCount={el.likeCount} key={index}/>
                 )
             })}
         </div>
