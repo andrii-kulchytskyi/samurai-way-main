@@ -1,36 +1,27 @@
-import React, {ChangeEvent} from "react";
-import {ProfilePageType, StoreType} from "../../../redux/store";
+import React from "react";
+import {StateType} from "../../../redux/store";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
-import StoreContext from "../../../StoreContext";
 import MyPosts from "./MyPosts";
+import {connect} from "react-redux";
 
 
-export type MyPostsContainerType = {
-    store: StoreType
+let mapStateToProps = (state: StateType) => {
+    return {
+        posts: state.profilePage.posts,
+        newMessageTextPost: state.profilePage.newMessageTextPost
+    }
 }
-const MyPostsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                let state = store.getState();
-                const addPost = () => {
-                    store.dispatch(addPostAC());
-                };
-                const onChangePostHandler = (text: string) => {
-                    store.dispatch(updateNewPostTextAC(text));
-                };
 
-                return (
-                    <MyPosts
-                        posts={state.profilePage.posts}
-                        newMessageTextPost={state.profilePage.newMessageTextPost}
-                        addPost={addPost}
-                        updateNewPostText={onChangePostHandler}
-                    />
-                );
-            }}
-        </StoreContext.Consumer>
-    );
-};
+let mapDispatchToProps = (dispatch: any) => {
+    return {
+        addPost: () => {
+            dispatch(addPostAC());
+        },
+        updateNewPostText: (text: string) => {
+            dispatch(updateNewPostTextAC(text))
+        }
+    }
+}
 
-export default MyPostsContainer
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export default MyPostsContainer;
