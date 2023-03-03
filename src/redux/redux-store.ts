@@ -4,7 +4,7 @@ import {dialogsReducer} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 import {StoreType} from "./store";
 
-let reducers = combineReducers({
+export let reducers = combineReducers({
     profileReducer: profileReducer,
     dialogsReducer: dialogsReducer,
     sidebarReducer: sidebarReducer

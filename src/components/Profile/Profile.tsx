@@ -9,7 +9,7 @@ const Profile = () => {
         <div className={s.content}>
             <ProfileInfo/>
             <MyPostsContainer
-            />
+                newMessageTextPost={""}/>
         </div>
     )
 }

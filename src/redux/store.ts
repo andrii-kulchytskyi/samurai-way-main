@@ -9,7 +9,7 @@ export let store: StoreType = {
                 {id: 1, message: 'Hello hor u', likeCount: 2},
                 {id: 2, message: 'It is my first post,', likeCount: 2},
             ],
-            newMessageTextPost: "",
+            newPostText: "",
             // dispatch: () => store.dispatch
             // addPostCallback: () => addPostAC,
             // changeNewTextCallback: () => changeNewTextAC
@@ -89,7 +89,7 @@ export type DialogPageType = {
 }
 export type ProfilePageType = {
     posts: PostType[]
-    newMessageTextPost: string
+    newPostText: string
     // dispatch: (action: ActionsType) => void
     // changeNewTextCallback: (newText: string) => void
     // addPostCallback: (postMessage: string) => void
