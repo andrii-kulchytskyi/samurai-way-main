@@ -2,8 +2,6 @@ import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Posts, {PostsType} from "./Posts/Posts";
 
-
-
 type MyPostsProps = {
     posts: PostsType[],
     newMessageTextPost: string,

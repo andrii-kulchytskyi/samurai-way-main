@@ -3,12 +3,13 @@ import {StateType} from "../../../redux/store";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
 
 
-let mapStateToProps = (state: StateType) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        posts: state.profilePageReducer.posts,
+        newPostText: state.profilePageReducer.newPostText
     }
 }
 

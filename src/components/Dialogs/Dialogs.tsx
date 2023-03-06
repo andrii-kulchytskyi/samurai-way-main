@@ -12,6 +12,23 @@ type DialogsType = {
     sendMessage: () => void
 }
 const Dialogs = (props: DialogsType) => {
+
+        const dialogsElements = props.dialogsPage.dialogs.map((el, index) => {
+            return (
+                <ul key={el.id}>
+                    <li><DialogItem name={el.name} id={el.id}/></li>
+                </ul>
+            )
+        })
+
+        const messagesElements = props.dialogsPage.messages.map((el, index) => {
+            return (
+                <div key={el.id}>
+                    <Message message={el.message}/>
+                </div>
+            )
+        })
+
         const onClickAddMessage = () => {
             props.sendMessage()
         }
@@ -22,25 +39,12 @@ const Dialogs = (props: DialogsType) => {
         return (
             <div className={s.dialogs}>
                 <div className={s.dialogsItems}>
-                    {store.getState().dialogsPage.dialogs.map((el, index) => {
-                        return (
-                            <ul key={el.id}>
-                                <li><DialogItem name={el.name} id={el.id}/></li>
-                            </ul>
-                        )
-                    })}
-
+                    {dialogsElements}
                     <div className={s.messages}>
-                        {store.getState().dialogsPage.messages.map((el, index) => {
-                            return (
-                                <div key={el.id}>
-                                    <Message message={el.message}/>
-
-                                </div>
-                            )
-                        })}
+                        {messagesElements}
                     </div>
-                    <textarea placeholder={"Enter your message"} onChange={onChangeMessage}></textarea>
+                    <textarea placeholder={"Enter your message"} value={props.dialogsPage.newMessage}
+                              onChange={onChangeMessage}></textarea>
                     <div>
                         <button onClick={onClickAddMessage}>Add message</button>
                     </div>

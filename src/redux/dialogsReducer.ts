@@ -1,5 +1,8 @@
 import {ActionsType, DialogPageType} from "./store";
 
+
+
+
 let initState = {
     dialogs: [
         {id: 1, name: "Andrii"},
@@ -24,8 +27,8 @@ export const dialogsReducer = (state: DialogPageType = initState, action: Action
             return {...state, newMessage: action.body}
 
         case "SEND-NEW-MESSAGE":
-            let body = state.newMessage
-            return {...state, newMessage: "", messages: [...state.messages, {id: 5, message: body}]};
+            let message = state.newMessage
+            return {...state, newMessage: "", messages: [...state.messages, {id: 5, message: message}]};
         default:
             return state
     }

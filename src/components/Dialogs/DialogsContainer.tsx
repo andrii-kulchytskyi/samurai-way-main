@@ -3,11 +3,12 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import React from 'react';
 import {StateType} from "../../redux/store";
+import {AppStateType} from "../../redux/redux-store";
 
 
-let mapStateToProps = (state: StateType) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPageReducer
     }
 }
 let mapDispatchToProps = (dispatch: any) => {

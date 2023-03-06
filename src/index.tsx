@@ -4,11 +4,11 @@ import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {applyMiddleware, createStore} from "redux";
-import {reducers} from "./redux/redux-store";
+import {rootReducer} from "./redux/redux-store";
 
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
-const store = createStoreWithMiddleware(reducers);
+const store = createStoreWithMiddleware(rootReducer);
 
 ReactDOM.render(
     <BrowserRouter>
