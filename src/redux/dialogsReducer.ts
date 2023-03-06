@@ -1,7 +1,14 @@
-import {ActionsType, DialogPageType} from "./store";
+import {ActionsType} from "./store";
 
 
-
+export type MessageType = {
+    id: number
+    message: string
+}
+export type DialogType = {
+    id: number
+    name: string
+}
 
 let initState = {
     dialogs: [
@@ -11,16 +18,17 @@ let initState = {
         {id: 4, name: "Yulia"},
         {id: 5, name: "Bogdan"},
         {id: 6, name: "Valera"},
-    ],
+    ] as DialogType[],
     messages: [
         {id: 1, message: "Hi"},
         {id: 2, message: "How r u?"},
         {id: 3, message: "Bye!"},
-    ],
+    ] as MessageType[],
     newMessage: "",
 }
 
-export const dialogsReducer = (state: DialogPageType = initState, action: ActionsType): DialogPageType => {
+export type InitialStateDialogsType = typeof initState
+export const dialogsReducer = (state: InitialStateDialogsType = initState, action: ActionsType): InitialStateDialogsType => {
 
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":

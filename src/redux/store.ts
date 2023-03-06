@@ -1,5 +1,5 @@
-import {addPostAC, updateNewPostTextAC, profileReducer} from "./profileReducer";
-import {dialogsReducer, sendMessageAC, updateMessageAC} from "./dialogsReducer";
+import {addPostAC, updateNewPostTextAC, profileReducer, ProfilePageType} from "./profileReducer";
+import {dialogsReducer, DialogType, MessageType, sendMessageAC, updateMessageAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 import {followAC, setUsersAC, unFollowAC} from "./usersReducer";
 
@@ -14,30 +14,12 @@ export type ActionsType =
     | ReturnType<typeof setUsersAC>
 
 
-export type MessageType = {
-    id: number
-    message: string
-}
-export type DialogType = {
-    id: number
-    name: string
-}
-export type PostType = {
-    id: number
-    message: string
-    likeCount: number
-}
 export type DialogPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
     newMessage: string
 }
-export type ProfilePageType = {
-    posts: PostType[]
-    newPostText: string
 
-
-}
 export type SidebarType = {}
 export type StateType = {
     profilePage: ProfilePageType
