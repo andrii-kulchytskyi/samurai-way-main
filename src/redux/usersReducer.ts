@@ -4,11 +4,16 @@ import {ActionsType} from "./store";
 export type InitialStateUserType = {
     users: UserType[]
 }
+
+export type PhotosUrlType = {
+    small: string,
+    large: string
+}
 export type UserType = {
     id: number,
-    photoUrl: string,
+    photos: PhotosUrlType,
     followed: boolean,
-    fullName: string,
+    name: string,
     status: string,
     location: LocationType
 }

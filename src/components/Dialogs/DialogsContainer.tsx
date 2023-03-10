@@ -2,9 +2,7 @@ import {InitialStateDialogsType, sendMessageAC, updateMessageAC} from "../../red
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import React from 'react';
-import {DialogPageType, StateType} from "../../redux/store";
 import {AppStateType} from "../../redux/redux-store";
-import {InitialStateProfileType} from "../../redux/profileReducer";
 import {Dispatch} from "redux";
 
 
