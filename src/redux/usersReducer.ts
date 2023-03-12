@@ -28,8 +28,8 @@ export type LocationType = {
 let initState: InitialStateUserType = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 20,
-    currentPage: 1
+    totalUsersCount: 0,
+    currentPage: 2
 }
 
 
@@ -47,8 +47,16 @@ export const usersReducer = (state: InitialStateUserType = initState, action: Ac
             }
         case "SET_USERS":
             return {
-                ...state, users: [...state.users, ...action.payload.users
-                ]
+                ...state, users: action.payload.users
+
+            }
+        case "SET_CURRENT_PAGE":
+            return {
+                ...state, currentPage: action.payload.currentPage
+            }
+        case "SET_TOTAL_USERS_COUNT":
+            return {
+                ...state, totalUsersCount: action.payload.totalUsersCount
             }
         default:
             return state
@@ -80,3 +88,19 @@ export const setUsersAC = (users: UserType[]) => {
     } as const
 }
 
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: "SET_CURRENT_PAGE",
+        payload: {
+            currentPage
+        }
+    } as const
+}
+export const setTotalUsersCountAC = (totalUsersCount: number) => {
+    return {
+        type: "SET_TOTAL_USERS_COUNT",
+        payload: {
+            totalUsersCount
+        }
+    } as const
+}

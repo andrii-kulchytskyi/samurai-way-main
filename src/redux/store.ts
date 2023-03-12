@@ -1,7 +1,7 @@
 import {addPostAC, updateNewPostTextAC, profileReducer, ProfilePageType} from "./profileReducer";
 import {dialogsReducer, DialogType, MessageType, sendMessageAC, updateMessageAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
-import {followAC, setUsersAC, unFollowAC} from "./usersReducer";
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unFollowAC} from "./usersReducer";
 
 
 export type ActionsType =
@@ -12,6 +12,8 @@ export type ActionsType =
     | ReturnType<typeof followAC>
     | ReturnType<typeof unFollowAC>
     | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setTotalUsersCountAC>
 
 
 export type DialogPageType = {
