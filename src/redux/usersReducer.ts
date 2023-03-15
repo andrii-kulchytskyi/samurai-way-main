@@ -6,6 +6,7 @@ export type InitialStateUserType = {
     pageSize: number,
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 export type PhotosUrlType = {
@@ -29,7 +30,8 @@ let initState: InitialStateUserType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 }
 
 
@@ -48,7 +50,6 @@ export const usersReducer = (state: InitialStateUserType = initState, action: Ac
         case "SET_USERS":
             return {
                 ...state, users: action.payload.users
-
             }
         case "SET_CURRENT_PAGE":
             return {
@@ -57,6 +58,10 @@ export const usersReducer = (state: InitialStateUserType = initState, action: Ac
         case "SET_TOTAL_USERS_COUNT":
             return {
                 ...state, totalUsersCount: action.payload.totalUsersCount
+            }
+        case "TOGGLE_IS_FETCHING":
+            return {
+                ...state, isFetching: action.payload.isFetching
             }
         default:
             return state
@@ -101,6 +106,15 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => {
         type: "SET_TOTAL_USERS_COUNT",
         payload: {
             totalUsersCount
+        }
+    } as const
+}
+
+export const toggleIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: "TOGGLE_IS_FETCHING",
+        payload: {
+            isFetching
         }
     } as const
 }

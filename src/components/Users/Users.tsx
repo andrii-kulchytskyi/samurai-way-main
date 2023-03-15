@@ -4,7 +4,6 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.jpg";
 import {InitialStateUserType} from "../../redux/usersReducer";
 
-
 type UsersPropsType = {
     currentPage: number
     pageSize: number
@@ -16,23 +15,20 @@ type UsersPropsType = {
 }
 
 const Users = (props: UsersPropsType) => {
-
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
     return <div>
         <>
             {pages.map((page) => {
                 return <span
-                    className={props.currentPage === page ? styles.selectedPage : ""}
-                    onClick={(event) => {
-                        props.onPageChanged(page)
-                    }}>{page}</span>
+                             className={props.currentPage === page ? styles.selectedPage : ""}
+                             onClick={(event) => {
+                                 props.onPageChanged(page)
+                             }}>{page}</span>
             })}
-
         </>
         {
             props.users.users.map(user => <div key={user.id}>
