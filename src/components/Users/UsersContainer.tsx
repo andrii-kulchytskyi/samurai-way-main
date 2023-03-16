@@ -13,25 +13,29 @@ import React from "react";
 import axios from "axios";
 import Users from "./Users";
 import preloader from '../../assets/images/preloader.gif'
+import Preloader from "../common/Preloader";
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
+        this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((response) => {
-            this.props.setUsers(response.data.items);
+            this.props.toggleIsFetching(false)
             this.props.setTotalUsersCount(response.data.totalUsersCount);
+            this.props.setUsers(response.data.items);
         })
     }
 
     onPageChanged = (page: number) => {
         this.props.setCurrentPage(page)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then((response) => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
         })
     }
 
     render() {
-        return <>
-            <div> {this.props.isFetching ? <img src={preloader}/> : null}</div>
+        return <div>
+            <Preloader isFetching={this.props.isFetching}/>
             <Users currentPage={this.props.currentPage}
                    pageSize={this.props.pageSize}
                    users={this.props.users}
@@ -41,7 +45,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
                    onPageChanged={this.onPageChanged}
 
             />
-        </>
+        </div>
     }
 };
 
