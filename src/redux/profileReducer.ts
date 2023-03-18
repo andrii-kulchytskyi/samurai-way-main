@@ -1,5 +1,5 @@
-import React from 'react';
 import {ActionsType} from "./store";
+import profile from "../components/Profile/Profile";
 
 export type ProfilePageType = {
     posts: PostType[]
@@ -11,15 +11,23 @@ export type PostType = {
     likeCount: number
 }
 
+export type InitialStateProfileType = {
+    posts: PostType[]
+    newPostText: string,
+    profile: number
+}
+
+
 let initState = {
     posts: [
         {id: 1, message: 'Hello hor u', likeCount: 2},
         {id: 2, message: 'It is my first post,', likeCount: 2},
     ] as PostType[],
     newPostText: "",
+    profile: 2
 }
 
-export type InitialStateProfileType = typeof initState
+// export type InitialStateProfileType = typeof initState
 
 export const profileReducer = (state: InitialStateProfileType = initState, action: ActionsType
 ): InitialStateProfileType => {
@@ -29,6 +37,11 @@ export const profileReducer = (state: InitialStateProfileType = initState, actio
             return {...state, newPostText: "", posts: [...state.posts, newPost]}
         case "CHANGE-NEW-TEXT":
             return {...state, newPostText: action.newText}
+        case "SET-USER-PROFILE":
+            return {
+                ...state, profile: action.profile
+
+            }
         default:
             return state
     }
@@ -46,3 +59,10 @@ export const addPostAC = () => {
         type: "ADD-POST",
     } as const
 }
+export const setUserProfileAC = (profile: number) => {
+    return {
+        type: "SET-USER-PROFILE",
+        profile
+    } as const
+}
+

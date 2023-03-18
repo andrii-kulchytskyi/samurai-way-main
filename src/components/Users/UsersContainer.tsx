@@ -98,8 +98,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         toggleIsFetching: (isFetching: boolean) => {
             dispatch(toggleIsFetchingAC(isFetching))
         }
-
     }
-
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
