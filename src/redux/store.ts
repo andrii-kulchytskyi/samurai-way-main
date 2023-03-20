@@ -9,6 +9,7 @@ import {
     toggleIsFetchingAC,
     unFollowAC
 } from "./usersReducer";
+import {setAuthUsersDataAC} from "./authReducer";
 
 
 export type ActionsType =
@@ -23,6 +24,7 @@ export type ActionsType =
     | ReturnType<typeof setTotalUsersCountAC>
     | ReturnType<typeof toggleIsFetchingAC>
     | ReturnType<typeof setUserProfileAC>
+    | ReturnType<typeof setAuthUsersDataAC>
 
 
 export type DialogPageType = {

@@ -1,8 +1,13 @@
-.header img{
+.header img {
     width: 100px;
 }
 
-.header{
+.header {
     grid-area: h;
     background-color: aquamarine;
+}
+
+.loginBloc {
+    float: right;
+    color: white;
 }

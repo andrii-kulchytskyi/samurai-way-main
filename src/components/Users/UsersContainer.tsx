@@ -22,7 +22,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
             this.props.toggleIsFetching(false)
             this.props.setTotalUsersCount(response.data.totalUsersCount);
             this.props.setUsers(response.data.items);
-        })
+        });
     }
 
     onPageChanged = (page: number) => {
