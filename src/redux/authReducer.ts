@@ -1,6 +1,4 @@
 import {ActionsType} from "./store";
-
-
 export type InitialStateAuthType = {
     userId: string
     email: string
@@ -14,7 +12,6 @@ let initState: InitialStateAuthType = {
     login: "",
     isAuth: false
 }
-
 
 export const authReducer = (state: InitialStateAuthType = initState, action: ActionsType): InitialStateAuthType => {
     switch (action.type) {

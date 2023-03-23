@@ -4,6 +4,8 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.jpg";
 import {InitialStateUserType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
+import {usersAPI} from "../../api/api";
 
 type UsersPropsType = {
     currentPage: number
@@ -42,11 +44,22 @@ const Users = (props: UsersPropsType) => {
                     </NavLink>
                 </div>
                 <div>
-                    {user.followed ? <button onClick={() => {
-                        props.unFollow(user.id)
-                    }}>Unfollow</button> : <button onClick={() => {
-                        props.follow(user.id)
-                    }}>Follow</button>}
+                    {user.followed ?
+                        <button onClick={() => {
+                            usersAPI.unFollowUser(user.id).then((data) => {
+                                if (data.resultCode === 0) {
+                                    props.unFollow(user.id)
+                                }
+                            });
+                        }}>Unfollow</button>
+                        :
+                        <button onClick={() => {
+                            usersAPI.followUser(user.id).then((data) => {
+                                if (data.resultCode === 0) {
+                                    props.follow(user.id)
+                                }
+                            });
+                        }}>Follow</button>}
                 </div>
             </span>
                 <span>

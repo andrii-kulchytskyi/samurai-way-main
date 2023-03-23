@@ -13,7 +13,7 @@ const Header = (props: HeaderPropsType) => {
             <img
                 src='https://99designs-blog.imgix.net/blog/wp-content/uploads/2019/07/Pepsi_logo_emblem_logotype-2.png?auto=format&q=60&fit=max&w=930'/>
             <div className={s.loginBlock}>
-                {props.isAuth ? props.login : <NavLink to={'/login'}></NavLink>}
+                {props.isAuth ? props.login : <NavLink to={'/login'}>LOGIN</NavLink>}
             </div>
 
         </header>

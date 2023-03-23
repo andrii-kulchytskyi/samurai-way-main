@@ -1,5 +1,4 @@
 import {ActionsType} from "./store";
-import profile from "../components/Profile/Profile";
 
 export type ProfilePageType = {
     posts: PostType[]
@@ -40,7 +39,6 @@ export const profileReducer = (state: InitialStateProfileType = initState, actio
         case "SET-USER-PROFILE":
             return {
                 ...state, profile: action.profile
-
             }
         default:
             return state

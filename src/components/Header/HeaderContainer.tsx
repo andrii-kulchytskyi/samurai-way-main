@@ -6,10 +6,11 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import {setAuthUsersDataAC} from "../../redux/authReducer";
+import {usersAPI} from "../../api/api";
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true}).then((response) => {
+        usersAPI.getHeaderUser().then((response) => {
             if (response.data.resultCode === 0) {
                 this.props.setAuthUsersData(response.data.id, response.data.email, response.data.login)
             }
