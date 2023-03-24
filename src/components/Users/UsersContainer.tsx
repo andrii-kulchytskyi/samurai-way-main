@@ -3,7 +3,7 @@ import {
     followAC,
     InitialStateUserType,
     setCurrentPageAC, setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC,
+    setUsersAC, toggleIsFetchingAC, toggleIsFollowingProgressAC,
     unFollowAC,
     UserType
 } from "../../redux/usersReducer";
@@ -42,7 +42,8 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
                    follow={this.props.follow}
                    unFollow={this.props.unFollow}
                    onPageChanged={this.onPageChanged}
-
+                   toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+                   followingInProgress={this.props.followingInProgress}
             />
         </div>
     }
@@ -54,6 +55,7 @@ type MapStateToPropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: number[]
 
 }
 type MapDispatchToPropsType = {
@@ -63,6 +65,7 @@ type MapDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    toggleIsFollowingProgress: (followingInProgress: boolean, userID: number) => void
 }
 
 export type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -73,7 +76,8 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         pageSize: state.usersPageReducer.pageSize,
         totalUsersCount: state.usersPageReducer.totalUsersCount,
         currentPage: state.usersPageReducer.currentPage,
-        isFetching: state.usersPageReducer.isFetching
+        isFetching: state.usersPageReducer.isFetching,
+        followingInProgress: state.usersPageReducer.followingInProgress
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
@@ -95,6 +99,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         },
         toggleIsFetching: (isFetching: boolean) => {
             dispatch(toggleIsFetchingAC(isFetching))
+        },
+        toggleIsFollowingProgress: (isFetching: boolean, userID: number) => {
+            dispatch(toggleIsFollowingProgressAC(isFetching, userID))
         }
     }
 }

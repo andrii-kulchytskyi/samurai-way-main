@@ -7,6 +7,7 @@ export type InitialStateUserType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: number[]
 }
 
 export type PhotosUrlType = {
@@ -31,7 +32,8 @@ let initState: InitialStateUserType = {
     pageSize: 5,
     totalUsersCount: 10,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: []
 }
 
 
@@ -62,6 +64,13 @@ export const usersReducer = (state: InitialStateUserType = initState, action: Ac
         case "TOGGLE_IS_FETCHING":
             return {
                 ...state, isFetching: action.payload.isFetching
+            }
+        case "TOGGLE_IS_FOLLOWING_PROGRESS":
+            return {
+                ...state,
+                followingInProgress: action.payload.isFetching ?
+                    [...state.followingInProgress, action.payload.userID]
+                    : state.followingInProgress.filter(id => id != action.payload.userID)
             }
         default:
             return state
@@ -115,6 +124,15 @@ export const toggleIsFetchingAC = (isFetching: boolean) => {
         type: "TOGGLE_IS_FETCHING",
         payload: {
             isFetching
+        }
+    } as const
+}
+export const toggleIsFollowingProgressAC = (isFetching: boolean, userID: number) => {
+    return {
+        type: "TOGGLE_IS_FOLLOWING_PROGRESS",
+        payload: {
+            isFetching,
+            userID
         }
     } as const
 }
