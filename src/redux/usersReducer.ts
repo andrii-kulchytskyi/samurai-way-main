@@ -1,4 +1,6 @@
 import {ActionsType} from "./store";
+import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 
 export type InitialStateUserType = {
@@ -135,4 +137,13 @@ export const toggleIsFollowingProgressAC = (isFetching: boolean, userID: number)
             userID
         }
     } as const
+}
+
+export const getUsersThunk = (dispatch: Dispatch) => {
+    dispatch(toggleIsFetchingAC(true))
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+        this.props.toggleIsFetching(false)
+        this.props.setTotalUsersCount(data.totalUsersCount);
+        this.props.setUsers(data.items);
+    });
 }
