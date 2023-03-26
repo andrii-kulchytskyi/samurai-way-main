@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {
-    followAC,
+    followAC, getUsersThunkCreator,
     InitialStateUserType,
     setCurrentPageAC, setTotalUsersCountAC,
     setUsersAC, toggleIsFetchingAC, toggleIsFollowingProgressAC,
@@ -66,6 +66,7 @@ type MapDispatchToPropsType = {
     setTotalUsersCount: (totalUsersCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
     toggleIsFollowingProgress: (followingInProgress: boolean, userID: number) => void
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => (dispatch: Dispatch) => void
 }
 
 export type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -102,6 +103,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         },
         toggleIsFollowingProgress: (isFetching: boolean, userID: number) => {
             dispatch(toggleIsFollowingProgressAC(isFetching, userID))
+        },
+        getUsersThunkCreator: (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+
         }
     }
 }

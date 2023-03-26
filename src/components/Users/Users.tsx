@@ -59,7 +59,6 @@ const Users = (props: UsersPropsType) => {
                         :
                         <button disabled={props.followingInProgress.some(id => id === user.id)}
                                 onClick={() => {
-
                                     props.toggleIsFollowingProgress(true, user.id)
                                     usersAPI.followUser(user.id).then((data) => {
                                         if (data.resultCode === 0) {

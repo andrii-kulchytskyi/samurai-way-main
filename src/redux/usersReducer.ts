@@ -139,11 +139,13 @@ export const toggleIsFollowingProgressAC = (isFetching: boolean, userID: number)
     } as const
 }
 
-export const getUsersThunk = (dispatch: Dispatch) => {
-    dispatch(toggleIsFetchingAC(true))
-    usersAPI.getUsers(currentPage, pageSize).then((data) => {
-        this.props.toggleIsFetching(false)
-        this.props.setTotalUsersCount(data.totalUsersCount);
-        this.props.setUsers(data.items);
-    });
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFetchingAC(true))
+        usersAPI.getUsers(currentPage, pageSize).then((data) => {
+            dispatch(toggleIsFetchingAC(false))
+            dispatch(setTotalUsersCountAC(data.totalUsersCount))
+            dispatch(setUsersAC(data.items))
+        });
+    }
 }
