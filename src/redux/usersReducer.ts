@@ -79,7 +79,7 @@ export const usersReducer = (state: InitialStateUserType = initState, action: Ac
     }
 }
 
-export const followAC = (userId: number) => {
+export const follow = (userId: number) => {
     return {
         type: "FOLLOW",
         payload: {
@@ -87,7 +87,7 @@ export const followAC = (userId: number) => {
         }
     } as const
 }
-export const unFollowAC = (userId: number) => {
+export const unFollow = (userId: number) => {
     return {
         type: "UNFOLLOW",
         payload: {
@@ -95,7 +95,7 @@ export const unFollowAC = (userId: number) => {
         }
     } as const
 }
-export const setUsersAC = (users: UserType[]) => {
+export const setUsers = (users: UserType[]) => {
     return {
         type: "SET_USERS",
         payload: {
@@ -104,7 +104,7 @@ export const setUsersAC = (users: UserType[]) => {
     } as const
 }
 
-export const setCurrentPageAC = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: "SET_CURRENT_PAGE",
         payload: {
@@ -112,7 +112,7 @@ export const setCurrentPageAC = (currentPage: number) => {
         }
     } as const
 }
-export const setTotalUsersCountAC = (totalUsersCount: number) => {
+export const setTotalUsersCount = (totalUsersCount: number) => {
     return {
         type: "SET_TOTAL_USERS_COUNT",
         payload: {
@@ -121,7 +121,7 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => {
     } as const
 }
 
-export const toggleIsFetchingAC = (isFetching: boolean) => {
+export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: "TOGGLE_IS_FETCHING",
         payload: {
@@ -129,7 +129,7 @@ export const toggleIsFetchingAC = (isFetching: boolean) => {
         }
     } as const
 }
-export const toggleIsFollowingProgressAC = (isFetching: boolean, userID: number) => {
+export const toggleIsFollowingProgress = (isFetching: boolean, userID: number) => {
     return {
         type: "TOGGLE_IS_FOLLOWING_PROGRESS",
         payload: {
@@ -140,12 +140,12 @@ export const toggleIsFollowingProgressAC = (isFetching: boolean, userID: number)
 }
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
-    return (dispatch: Dispatch) => {
-        dispatch(toggleIsFetchingAC(true))
+    return (dispatch: Dispatch<ActionsType>) => {
+        dispatch(toggleIsFetching(true))
         usersAPI.getUsers(currentPage, pageSize).then((data) => {
-            dispatch(toggleIsFetchingAC(false))
-            dispatch(setTotalUsersCountAC(data.totalUsersCount))
-            dispatch(setUsersAC(data.items))
+            dispatch(toggleIsFetching(false))
+            dispatch(setTotalUsersCount(data.totalUsersCount))
+            dispatch(setUsers(data.items))
         });
     }
 }

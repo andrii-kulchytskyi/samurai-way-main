@@ -27,12 +27,12 @@ const Users = (props: UsersPropsType) => {
     }
     return <div>
         <>
-            {pages.map((page) => {
-                return <span
-                    className={props.currentPage === page ? styles.selectedPage : ""}
-                    onClick={(event) => {
-                        props.onPageChanged(page)
-                    }}>{page}</span>
+            {pages.map((page, index) => {
+                return <span key={index}
+                             className={props.currentPage === page ? styles.selectedPage : ""}
+                             onClick={(event) => {
+                                 props.onPageChanged(page)
+                             }}>{page}</span>
             })}
         </>
         {

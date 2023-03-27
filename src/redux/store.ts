@@ -2,12 +2,12 @@ import {addPostAC, updateNewPostTextAC, profileReducer, ProfilePageType, setUser
 import {dialogsReducer, DialogType, MessageType, sendMessageAC, updateMessageAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    toggleIsFetchingAC, toggleIsFollowingProgressAC,
-    unFollowAC
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching, toggleIsFollowingProgress,
+    unFollow
 } from "./usersReducer";
 import {setAuthUsersDataAC} from "./authReducer";
 
@@ -17,15 +17,15 @@ export type ActionsType =
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateMessageAC>
     | ReturnType<typeof sendMessageAC>
-    | ReturnType<typeof followAC>
-    | ReturnType<typeof unFollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setTotalUsersCountAC>
-    | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unFollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setAuthUsersDataAC>
-    | ReturnType<typeof toggleIsFollowingProgressAC>
+    | ReturnType<typeof toggleIsFollowingProgress>
 
 
 export type DialogPageType = {
