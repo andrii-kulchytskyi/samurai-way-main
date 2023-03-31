@@ -21,6 +21,7 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
+
         return <Profile {...this.props} profile={this.props.profile}/>;
     }
 }
@@ -30,6 +31,8 @@ type PathParamsType = {
 }
 type MapStateToPropsType = {
     profile: number
+    isAuth: boolean
+
 
 }
 type MapDispatchToPropsType = {
@@ -40,7 +43,8 @@ export type ProfileContainerPropsType = MapStateToPropsType & MapDispatchToProps
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        profile: state.profilePageReducer.profile
+        profile: state.profilePageReducer.profile,
+        isAuth: state.authReducer.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
