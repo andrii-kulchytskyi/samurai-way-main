@@ -1,12 +1,11 @@
 import React from "react";
-import axios from "axios";
 import Profile from "./Profile";
-import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import {ProfilePageType, setUserProfileAC} from "../../redux/profileReducer";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {usersAPI} from "../../api/api";
+import {connect} from "react-redux";
 
 
 class ProfileContainer extends React.Component<PropsType> {
@@ -21,7 +20,9 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
-
+        if (!this.props.isAuth) {
+            return <Redirect to={'/login'}/>
+            }
         return <Profile {...this.props} profile={this.props.profile}/>;
     }
 }
