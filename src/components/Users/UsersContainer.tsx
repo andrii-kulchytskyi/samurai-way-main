@@ -14,6 +14,7 @@ import Users from "./Users";
 import Preloader from "../common/Preloader";
 import {usersAPI} from "../../api/api";
 import {ActionsType} from "../../redux/store";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
@@ -46,7 +47,7 @@ class UsersContainer extends React.Component<UsersContainerPropsType> {
                    follow={this.props.follow}
                    unFollow={this.props.unFollow}
                    onPageChanged={this.onPageChanged}
-                   // toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+                // toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
                    followingInProgress={this.props.followingInProgress}
             />
         </div>
@@ -112,4 +113,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         }
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+
+let AuthRedirectComponent = withAuthRedirect(UsersContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)

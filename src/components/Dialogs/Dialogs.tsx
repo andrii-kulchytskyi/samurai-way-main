@@ -31,9 +31,6 @@ const Dialogs = (props: MyDialogsContainerPropsType) => {
             props.updateNewMessageBodyCreator(e.currentTarget.value)
         }
 
-        if (!props.isAuth) {
-            return <Redirect to={'/login'}/>
-        }
 
         return (
             <div className={s.dialogs}>
