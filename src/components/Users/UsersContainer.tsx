@@ -8,13 +8,14 @@ import {
     UserType
 } from "../../redux/usersReducer";
 import {AppStateType} from "../../redux/redux-store";
-import {AnyAction, Dispatch} from "redux";
+import {AnyAction, compose, Dispatch} from "redux";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
 import {usersAPI} from "../../api/api";
 import {ActionsType} from "../../redux/store";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {withRouter} from "react-router-dom";
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {
     componentDidMount() {
@@ -114,5 +115,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(UsersContainer)
-export default connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(UsersContainer)

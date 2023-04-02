@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {ProfilePageType, setUserProfileAC} from "../../redux/profileReducer";
 import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {usersAPI} from "../../api/api";
@@ -50,7 +50,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
-
-export default connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent)
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect, withRouter)(ProfileContainer)
