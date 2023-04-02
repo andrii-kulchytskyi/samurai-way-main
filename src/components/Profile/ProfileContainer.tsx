@@ -7,6 +7,7 @@ import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {usersAPI} from "../../api/api";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {getUsersTC} from "../../redux/usersReducer";
 
 
 class ProfileContainer extends React.Component<PropsType> {
@@ -50,4 +51,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect, withRouter)(ProfileContainer)
+export default compose<React.ComponentType>(connect(mapStateToProps, {getUsers: getUsersTC}), withAuthRedirect, withRouter)(ProfileContainer)
