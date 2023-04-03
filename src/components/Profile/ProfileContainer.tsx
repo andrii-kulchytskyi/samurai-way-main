@@ -51,4 +51,7 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps, {getUsers: getUsersTC}), withAuthRedirect, withRouter)(ProfileContainer)
+export default compose<React.ComponentType>(connect(mapStateToProps,
+    {getUsers: getUsersTC}),
+    // withAuthRedirect,
+    withRouter)(ProfileContainer)
