@@ -4,10 +4,10 @@ import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import {ProfilePageType, setUserProfileAC} from "../../redux/profileReducer";
 import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
-import {usersAPI} from "../../api/api";
+import {profileAPI, usersAPI} from "../../api/api";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {getUsersTC} from "../../redux/usersReducer";
+import {getUsers} from "../../redux/usersReducer";
 
 
 class ProfileContainer extends React.Component<PropsType> {
@@ -16,9 +16,10 @@ class ProfileContainer extends React.Component<PropsType> {
         if (!userId) {
             userId = "2";
         }
-        usersAPI.getProfileUser(userId).then((data) => {
-            this.props.setUserProfile(data);
-        })
+        // usersAPI.getProfileUser(userId).then((data) => {
+        //     this.props.setUserProfile(data);
+        // })
+
     }
 
     render() {
@@ -52,6 +53,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 }
 
 export default compose<React.ComponentType>(connect(mapStateToProps,
-    {getUsers: getUsersTC}),
+        {getUsers: getUsers}),
     // withAuthRedirect,
     withRouter)(ProfileContainer)

@@ -10,7 +10,7 @@ import {usersAPI} from "../../api/api";
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
     componentDidMount() {
-        usersAPI.getHeaderUser().then((response) => {
+        usersAPI.authMe().then((response) => {
             if (response.data.resultCode === 0) {
                 this.props.setAuthUsersData(response.data.id, response.data.email, response.data.login)
             }

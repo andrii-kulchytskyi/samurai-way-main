@@ -2,7 +2,7 @@ import React from "react";
 import {UsersContainerPropsType} from "./UsersContainer";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.jpg";
-import {InitialStateUserType, unFollowTC} from "../../redux/usersReducer";
+import {InitialStateUserType, unfollow} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import {usersAPI} from "../../api/api";
@@ -17,7 +17,7 @@ type UsersPropsType = {
     follow: (userID: number) => (dispatch: Dispatch<ActionsType>) => void
     unFollow: (userID: number) => (dispatch: Dispatch<ActionsType>) => void
     onPageChanged: (page: number) => void
-    // toggleIsFollowingProgress: (followingInProgress: boolean, userID: number) => void
+    toggleIsFollowingProgress: (followingInProgress: boolean, userID: number) => void
     followingInProgress: number[]
 }
 
