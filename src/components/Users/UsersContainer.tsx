@@ -71,7 +71,6 @@ type MapDispatchToPropsType = {
     // setTotalUsersCount: (totalUsersCount: number) => void
     // toggleIsFetching: (isFetching: boolean) => void
     toggleIsFollowingProgress: (followingInProgress: boolean, userID: number) => void
-    getUsers: (currentPage: number, pageSize: number) => void
 }
 
 export type UsersContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -107,9 +106,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         // },
         toggleIsFollowingProgress: (isFetching: boolean, userID: number) => {
             dispatch(toggleIsFollowingProgress(isFetching, userID))
-        },
-        getUsers: (currentPage: number, pageSize: number) => {
-            dispatch(getUsers(currentPage, pageSize));
         },
     }
 }
