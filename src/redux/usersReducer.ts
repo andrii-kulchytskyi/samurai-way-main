@@ -152,7 +152,7 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunk => {
     }
 }
 
-export const unfollow = (userID: number) => {
+export const unFollow = (userID: number) => {
     return (dispatch: Dispatch<ActionsType>) => {
         dispatch(toggleIsFollowingProgress(true, userID))
         usersAPI.unFollowUser(userID).then((data) => {
