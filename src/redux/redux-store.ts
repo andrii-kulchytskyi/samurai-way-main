@@ -1,4 +1,4 @@
-import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from "redux";
+import {AnyAction, applyMiddleware, combineReducers, createStore} from "redux";
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
@@ -6,6 +6,7 @@ import {usersReducer} from "./usersReducer";
 import {authReducer} from "./authReducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk";
 
+//const middlewares = [ReduxThunk]
 
 export let rootReducer = combineReducers({
     profilePageReducer: profileReducer,
@@ -17,7 +18,7 @@ export let rootReducer = combineReducers({
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
-let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export type AppDispatch = ThunkDispatch<AppStateType, unknown, AnyAction>
 export  type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AnyAction>
 

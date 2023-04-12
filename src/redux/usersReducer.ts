@@ -140,17 +140,26 @@ export const toggleIsFollowingProgress = (isFetching: boolean, userID: number) =
     } as const
 }
 
-export const getUsers = (currentPage: number, pageSize: number): AppThunk => {
-    return (dispatch) => {
+export const getUsers = (currentPage: number, pageSize: number) => {
+    return async (dispatch: Dispatch<ActionsType>) => {
         dispatch(toggleIsFetching(true))
-        usersAPI.getUsers(currentPage, pageSize).then((data) => {
-            debugger
-            dispatch(toggleIsFetching(false))
-            dispatch(setTotalUsersCount(data.totalUsersCount))
-            dispatch(setUsers(data.items))
-        });
+        const data = await usersAPI.getUs(currentPage, pageSize)
+        dispatch(toggleIsFetching(false))
+        dispatch(setTotalUsersCount(data.totalUsersCount))
+        dispatch(setUsers(data.items))
     }
 }
+// export const getUsers = (currentPage: number, pageSize: number): AppThunk => {
+//     return (dispatch) => {
+//         dispatch(toggleIsFetching(true))
+//         usersAPI.getUs(currentPage, pageSize).then((data) => {
+//             debugger
+//             dispatch(toggleIsFetching(false))
+//             dispatch(setTotalUsersCount(data.totalUsersCount))
+//             dispatch(setUsers(data.items))
+//         });
+//     }
+// }
 
 export const unFollow = (userID: number) => {
     return (dispatch: Dispatch<ActionsType>) => {
