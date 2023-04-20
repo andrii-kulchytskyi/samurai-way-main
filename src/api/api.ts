@@ -22,16 +22,6 @@ export const usersAPI = {
             return response.data
         })
     },
-    authMe() {
-        return instance.get(`auth/me`).then(response => {
-            return response.data
-        })
-    },
-    getProfileUser(userId: string) {
-        return profileAPI.getProfileUser(`profile/${userId}`).then(response => {
-            return response.data
-        })
-    },
 }
 
 export const profileAPI = {
@@ -45,11 +35,11 @@ export const profileAPI = {
             return response.data
         })
     },
-    // updateStatus(userId: string) {
-    //     return instance.post(`status/${userId}`, {status: status}).then(response => {
-    //         return response.data
-    //     })
-    // }
+    updateStatus(userId: string) {
+        return instance.post(`profile/status/${userId}`, {}).then(response => {
+            return response.data
+        })
+    }
 }
 export const authAPI = {
     authMe() {

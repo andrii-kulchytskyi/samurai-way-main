@@ -1,7 +1,6 @@
 import {ActionsType} from "./store";
 import {usersAPI} from "../api/api";
-import {AnyAction, Dispatch} from "redux";
-import {AppThunk} from "./redux-store";
+import {Dispatch} from "redux";
 
 
 export type InitialStateUserType = {
@@ -12,7 +11,6 @@ export type InitialStateUserType = {
     isFetching: boolean
     followingInProgress: number[]
 }
-
 export type PhotosUrlType = {
     small: string,
     large: string
@@ -29,7 +27,6 @@ export type LocationType = {
     city: string,
     country: string
 }
-
 let initState: InitialStateUserType = {
     users: [],
     pageSize: 5,
@@ -38,7 +35,6 @@ let initState: InitialStateUserType = {
     isFetching: true,
     followingInProgress: []
 }
-
 
 export const usersReducer = (state: InitialStateUserType = initState, action: ActionsType): InitialStateUserType => {
     switch (action.type) {
@@ -79,7 +75,6 @@ export const usersReducer = (state: InitialStateUserType = initState, action: Ac
             return state
     }
 }
-
 export const followSuccess = (userId: number) => {
     return {
         type: "FOLLOW",
@@ -104,7 +99,6 @@ export const setUsers = (users: UserType[]) => {
         }
     } as const
 }
-
 export const setCurrentPage = (currentPage: number) => {
     return {
         type: "SET_CURRENT_PAGE",
@@ -121,7 +115,6 @@ export const setTotalUsersCount = (totalUsersCount: number) => {
         }
     } as const
 }
-
 export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: "TOGGLE_IS_FETCHING",
@@ -149,18 +142,6 @@ export const getUsers = (currentPage: number, pageSize: number) => {
         dispatch(setUsers(data.items))
     }
 }
-// export const getUsers = (currentPage: number, pageSize: number): AppThunk => {
-//     return (dispatch) => {
-//         dispatch(toggleIsFetching(true))
-//         usersAPI.getUs(currentPage, pageSize).then((data) => {
-//             debugger
-//             dispatch(toggleIsFetching(false))
-//             dispatch(setTotalUsersCount(data.totalUsersCount))
-//             dispatch(setUsers(data.items))
-//         });
-//     }
-// }
-
 export const unFollow = (userID: number) => {
     return (dispatch: Dispatch<ActionsType>) => {
         dispatch(toggleIsFollowingProgress(true, userID))
