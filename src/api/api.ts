@@ -41,7 +41,7 @@ export const profileAPI = {
         })
     },
     getStatus(userId: string) {
-        return instance.get(`status/${userId}`).then(response => {
+        return instance.get(`profile/status/${userId}`).then(response => {
             return response.data
         })
     },
@@ -50,4 +50,11 @@ export const profileAPI = {
     //         return response.data
     //     })
     // }
+}
+export const authAPI = {
+    authMe() {
+        return instance.get(`auth/me`).then(response => {
+            return response.data
+        })
+    },
 }
