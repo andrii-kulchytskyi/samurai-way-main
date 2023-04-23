@@ -4,14 +4,14 @@ import {
     InitialStateUserType,
     setCurrentPage, toggleIsFollowingProgress,
     unFollow,
-} from "../../redux/usersReducer";
+}
+from "../../redux/usersReducer";
 import {AppStateType} from "../../redux/redux-store";
 import {compose} from "redux";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
 import {withRouter} from "react-router-dom";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 class UsersContainer extends React.Component<UsersContainerPropsType> {

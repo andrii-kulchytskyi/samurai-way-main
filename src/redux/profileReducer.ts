@@ -15,6 +15,7 @@ export type InitialStateProfileType = {
     posts: PostType[]
     newPostText: string,
     profile: number
+    status: string
 }
 let initState = {
     posts: [
@@ -22,7 +23,8 @@ let initState = {
         {id: 2, message: 'It is my first post,', likeCount: 2},
     ] as PostType[],
     newPostText: "",
-    profile: 2
+    profile: 2,
+    status: ""
 }
 
 export const profileReducer = (state: InitialStateProfileType = initState, action: ActionsType): InitialStateProfileType => {
@@ -35,6 +37,10 @@ export const profileReducer = (state: InitialStateProfileType = initState, actio
         case "SET-USER-PROFILE":
             return {
                 ...state, profile: action.profile
+            }
+        case "SET-STATUS":
+            return {
+                ...state, status: action.status
             }
         default:
             return state
@@ -58,9 +64,29 @@ export const setUserProfileAC = (profile: number) => {
         profile
     } as const
 }
+export const setStatusAC = (status: string) => {
+    return {
+        type: "SET-STATUS",
+        status
+    } as const
+}
+
 
 export const getUserProfile = (userID: string) => (dispatch: Dispatch<ActionsType>) => {
     profileAPI.getProfileUser(userID).then(response => {
         dispatch(setUserProfileAC(response.data))
+    })
+}
+
+export const getStatus = (userID: string) => (dispatch: Dispatch<ActionsType>) => {
+    profileAPI.getStatus(userID).then(response => {
+
+        dispatch(setStatusAC(response.data))
+    })
+}
+export const updateStatus = (status: string) => (dispatch: Dispatch<ActionsType>) => {
+    profileAPI.getStatus(status).then(response => {
+        if (response.data.resultCode === 0)
+            dispatch(setStatusAC(response.data))
     })
 }

@@ -1,4 +1,11 @@
-import {addPostAC, updateNewPostTextAC, profileReducer, ProfilePageType, setUserProfileAC} from "./profileReducer";
+import {
+    addPostAC,
+    updateNewPostTextAC,
+    profileReducer,
+    ProfilePageType,
+    setUserProfileAC,
+    setStatusAC
+} from "./profileReducer";
 import {dialogsReducer, DialogType, MessageType, sendMessageAC, updateMessageAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 import {
@@ -26,6 +33,7 @@ export type ActionsType =
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setAuthUsersDataAC>
     | ReturnType<typeof toggleIsFollowingProgress>
+    | ReturnType<typeof setStatusAC>
 
 
 export type DialogPageType = {
