@@ -10,6 +10,14 @@ const LoginPage = () => {
                 <div>
                     <input placeholder={"Password"}/>
                 </div>
+                <div>
+                    <input type={"checkbox"}/> remember me
+                </div>
+                <div>
+                    <button>
+                        LOGIN
+                    </button>
+                </div>
             </form>
         </div>
     );
