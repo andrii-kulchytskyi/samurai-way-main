@@ -6,6 +6,9 @@ import {MyDialogsContainerPropsType} from "./DialogsContainer";
 import {Redirect} from "react-router-dom";
 import {Field, reduxForm} from "redux-form";
 
+type DataFormDialogsType = {
+
+}
 
 const Dialogs = (props: MyDialogsContainerPropsType) => {
 
@@ -51,7 +54,7 @@ const Dialogs = (props: MyDialogsContainerPropsType) => {
         );
     }
 ;
-const DialogsReduxForm = reduxForm<DataFormType>(
+const DialogsReduxForm = reduxForm<DataFormDialogsType>(
     {form: 'login'}
 )(Dialogs)
 
