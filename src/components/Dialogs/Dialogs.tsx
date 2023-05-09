@@ -4,6 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Messages/Message";
 import {MyDialogsContainerPropsType} from "./DialogsContainer";
 import {Redirect} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
 
 
 const Dialogs = (props: MyDialogsContainerPropsType) => {
@@ -41,6 +42,7 @@ const Dialogs = (props: MyDialogsContainerPropsType) => {
                     </div>
                     <textarea placeholder={"Enter your message"} value={props.dialogsPage.newMessage}
                               onChange={onChangeMessage}></textarea>
+                    <Field component={"textarea"} name={"newMessageBody"} placeholder={"Enter your message"}/>
                     <div>
                         <button onClick={onClickAddMessage}>Add message</button>
                     </div>
@@ -49,5 +51,8 @@ const Dialogs = (props: MyDialogsContainerPropsType) => {
         );
     }
 ;
+const DialogsReduxForm = reduxForm<DataFormType>(
+    {form: 'login'}
+)(Dialogs)
 
 export default Dialogs;
