@@ -44,7 +44,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         profile: state.profilePageReducer.profile,
         status: state.profilePageReducer.status,
-
     }
 }
 

@@ -29,7 +29,7 @@ const Dialogs = (props: MyDialogsContainerPropsType) => {
     // const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
     //     props.updateNewMessageBodyCreator(e.currentTarget.value)
     // }
-    const addMessage = (values: any) => {
+    const addMessage = (values: AddMessageFormProps) => {
         props.sendMessage(values.newMessageBody)
     }
 
@@ -48,6 +48,7 @@ const Dialogs = (props: MyDialogsContainerPropsType) => {
 
 type AddMessageFormProps = {
     textarea: string
+    newMessageBody: string
 }
 
 const AddMessageForm = (props: InjectedFormProps<AddMessageFormProps>) => {

@@ -1,7 +1,5 @@
 import {
     addPostAC,
-    updateNewPostTextAC,
-    profileReducer,
     ProfilePageType,
     setUserProfileAC,
     setStatusAC
@@ -20,8 +18,7 @@ import {setAuthUsersDataAC} from "./authReducer";
 
 
 export type ActionsType =
-    ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof addPostAC>
+    ReturnType<typeof addPostAC>
     | ReturnType<typeof updateMessageAC>
     | ReturnType<typeof sendMessageAC>
     | ReturnType<typeof followSuccess>
