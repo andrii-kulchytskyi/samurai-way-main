@@ -35,8 +35,8 @@ export const dialogsReducer = (state: InitialStateDialogsType = initState, actio
             return {...state, newMessage: action.body}
 
         case "SEND-NEW-MESSAGE":
-            let message = state.newMessage
-            return {...state, newMessage: "", messages: [...state.messages, {id: 5, message: message}]};
+            let message = action.newMessage
+            return {...state, messages: [...state.messages, {id: 5, message: message}]};
         default:
             return state
     }
@@ -48,8 +48,8 @@ export const updateMessageAC = (body: string) => {
     } as const
 }
 
-export const sendMessageAC = () => {
+export const sendMessageAC = (newMessage: string) => {
     return {
-        type: "SEND-NEW-MESSAGE",
+        type: "SEND-NEW-MESSAGE", newMessage
     } as const
 }

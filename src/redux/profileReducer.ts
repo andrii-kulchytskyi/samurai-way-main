@@ -80,7 +80,6 @@ export const getUserProfile = (userID: string) => (dispatch: Dispatch<ActionsTyp
 
 export const getStatus = (userID: string) => (dispatch: Dispatch<ActionsType>) => {
     profileAPI.getStatus(userID).then(response => {
-
         dispatch(setStatusAC(response.data))
     })
 }
