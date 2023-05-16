@@ -10,10 +10,7 @@ import {authAPI, usersAPI} from "../../api/api";
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
     componentDidMount() {
-        authAPI.authMe().then((response) => {
-            if (response.data.resultCode === 0) {
-                this.props.setAuthUsersData(response.data.id, response.data.email, response.data.login)
-            }
+this.props.get()
         });
     }
 
@@ -46,6 +43,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         setAuthUsersData: (id: string, email: string, login: string) => {
             dispatch(setAuthUsersDataAC(id, email, login))
+        },
+        setAuthUsersData:()=>{
+
         }
     }
 }

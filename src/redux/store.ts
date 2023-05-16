@@ -14,7 +14,7 @@ import {
     toggleIsFetching, toggleIsFollowingProgress,
     unFollowSuccess
 } from "./usersReducer";
-import {setAuthUsersDataAC} from "./authReducer";
+import {getAuthUserDataTC, setAuthUsersDataAC} from "./authReducer";
 
 
 export type ActionsType =
@@ -31,6 +31,8 @@ export type ActionsType =
     | ReturnType<typeof setAuthUsersDataAC>
     | ReturnType<typeof toggleIsFollowingProgress>
     | ReturnType<typeof setStatusAC>
+    | ReturnType<typeof setAuthUsersDataAC>
+
 
 
 export type DialogPageType = {
